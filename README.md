@@ -8,8 +8,7 @@
 5. [Installation](#installation)
 6. [Usage](#usage)
 7. [Screenshots](#screenshots)
-8. [Contributing](#contributing)
-9. [License](#license)
+8. [License](#license)
 
 ## Introduction
 SkillSync is a comprehensive application designed to connect freelancers with clients seeking specialized services. With the rapid evolution of the digital job market, SkillSync aims to offer a user-friendly platform for freelancers to showcase their skills and for clients to find the right professionals for their projects.
@@ -81,31 +80,40 @@ To set up SkillSync locally, follow these steps:
 ## Screenshots
 Here are some screenshots of the SkillSync application:
 
-![Home Page P1](![image](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/f68adab7-139a-4475-af95-7ed8b9482857))
-![Home Page P2](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/6dfd0bbf-01ef-456d-acd8-05220a03d3d0)
-![Home Page P3](![image](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/23413a03-90a9-438f-a327-02ac8280191b))
-![Home Page P4](![image](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/317f9a00-472b-44c1-9049-f0891f99a60a))
-<a href="https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/f68adab7-139a-4475-af95-7ed8b9482857" target="_blank">
-   Home Page P5
-</a>
+[![Home Page](HomePage)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/c0ffcc03-215e-47d6-a1ab-f2af1f935b00)
 
+[![Contact Page](ContactPage)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/c1d76855-9839-49fa-92b6-1f3d5a5b4c08)
 
+[![Login/Register Options](Login-Register-Options)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/20d6f469-ba70-40d5-a775-a92eb8a80654)
 
-*Home Page*
+[![Register Form](RegisterForm)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/2d7c5522-45ac-4a07-9188-fbe5a0878893)
 
-![Freelancer Profile](path/to/freelancer-profile-screenshot.png)
-*Freelancer Profile*
+[![Website Development projects](Project-Page)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/dbccdff4-c928-4652-b83e-39e371cb9a47)
 
-![Service Packages](path/to/service-packages-screenshot.png)
-*Service Packages*
+[![Project Page](ProjectPage)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/f06147f2-65a3-42cf-8421-68d06f52ea3e)
 
-## Contributing
-We welcome contributions from the community. To contribute:
+[![Freelancer Profile](FreelancerProfile)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/d5739fb5-04e7-482d-a44b-e91aa50a0415)
 
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Commit your changes and push the branch.
-4. Submit a pull request detailing your changes.
+[![Chat Page](ChatPage)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/14710712-d707-47bd-a8f2-7550d724de00)
+
+[![Manage Orders Page](ManageOrdersPage)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/bfe0f50a-d863-47b6-812d-2c71f29df990)
+
+[![Manage Order Page](ManageOrderPage)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/137fc0b7-810e-46e3-8944-68502432f9cb)
+
+[![Projects Dashboard](ProjectsDashboard)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/5395a562-9f65-4c8f-af55-96405d31f35c)
+
+[![Chatbot Dialog](Chatbot)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/1dfcbb3c-ded4-495c-b560-19151f440297)
+
+*Add Project Steps:*
+- [![Overview](Overview)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/af4ba572-ddc2-4852-8524-f88c4e6ae865)
+- [![Pricing](Pricing)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/505770a7-964e-4b53-bf51-b01d9c144fd0)
+- [![Description & FAQ](DescriptionFaq)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/233270f2-f11a-4ada-9c03-dcb08a618d9b)
+- [![Gallery](Gallery)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/2a9c5925-0e05-4f7a-b4a3-cdab9251fec6)
+- [![Publish](Publish)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/c0444cad-06e8-4e52-9cb8-60df3f9fcd64)
+
+[![Application Componenets Diagram](Architecture)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/6fe25e68-99f4-4b5a-9667-00ae2a81e2c4)
+
+[![Chatbot Components Diagram](ChatbotArchitecture)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/6c86f32f-4256-43e5-b250-6b9598aefc78)
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
