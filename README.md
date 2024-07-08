@@ -85,7 +85,10 @@ Here are some screenshots of the SkillSync application:
 ![Home Page P2](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/6dfd0bbf-01ef-456d-acd8-05220a03d3d0)
 ![Home Page P3](![image](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/23413a03-90a9-438f-a327-02ac8280191b))
 ![Home Page P4](![image](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/317f9a00-472b-44c1-9049-f0891f99a60a))
-[![Home Page P5](HomePage)](https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/f68adab7-139a-4475-af95-7ed8b9482857)
+<a href="https://github.com/AdrianBostan2002/SkillSync-v1/assets/87941004/f68adab7-139a-4475-af95-7ed8b9482857" target="_blank">
+   Home Page P5
+</a>
+
 
 
 *Home Page*
