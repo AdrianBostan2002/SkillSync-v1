@@ -1,0 +1,34 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bs-secondary);
+}
+
+.main-motto {
+    flex: 1;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.mottos {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-weight: 700;
+    padding: 1em;
+}
+
+.motto-text {
+    margin-left: 1em;
+}
+
+.image {
+    height: 100%;
+}
+
+.image-content {
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,26 @@
+@import "../../shared/base.scss";
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.stars-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+}
+
+.stars {
+    align-self: center;
+}
+
+.submit-review-button {
+    align-self: end;
+}
+
+:host ::ng-deep .p-rating-icon:not(.p-rating-cancel),
+:host ::ng-deep .p-rating-icon:not(.p-rating-cancel):hover {
+    color: var(--bs-secondary);
+}

@@ -1,0 +1,29 @@
+<p-dialog [(visible)]="displayReviewDialog" icon="pi pi-exclamation-triangle" [scrollTop]="true" [modal]="true"
+    (onHide)="closeDialog()">
+    <ng-template pTemplate="header"><h2 class="text-primary">Review</h2></ng-template>
+    <ng-template pTemplate="content">
+        <form [formGroup]="reviewForm">
+            <div class="content-container">
+                <div class="review-message">
+                    Please leave a review for the freelancer!
+                </div>
+                <div class="stars-content-container">
+                    <div class="stars">
+                        <p-rating formControlName="stars" [cancel]="false" [readonly]="false" [stars]="5"></p-rating>
+                    </div>
+                    <div class="content">
+                        <span class="p-float-label">
+                            <textarea formControlName="content" rows="5" cols="42" pInputTextarea
+                                [autoResize]="true"></textarea>
+                            <label for="float-input">Content</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="submit-review-button">
+                    <p-button (onClick)="onSubmit()" label="Submit" icon="pi pi-check" iconPos="right"
+                        styleClass="btn-secondary rounded"  [disabled]="reviewForm.invalid"></p-button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</p-dialog>

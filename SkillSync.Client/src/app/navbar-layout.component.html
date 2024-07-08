@@ -1,0 +1,15 @@
+<div class="content">
+    <ng-container *ngIf="!isUserAuthenticated; then unauthenticatedHeader; else sessionHeader" />
+    <ng-template #unauthenticatedHeader>
+        <app-unauthenticated-header></app-unauthenticated-header>
+    </ng-template>
+    <ng-template #sessionHeader>
+        <app-session-header></app-session-header>
+        <app-skill-categories-mega-bar></app-skill-categories-mega-bar>
+    </ng-template>
+    <p-toast></p-toast>
+    <app-loading-spinner />
+    <app-chatbot></app-chatbot>
+    <router-outlet></router-outlet>
+    <app-footer/>
+</div>

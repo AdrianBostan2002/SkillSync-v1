@@ -1,0 +1,31 @@
+<div class="main-container">
+    <div class="content-container">
+        <div class="title-container ms-3">
+            <h2 class="text-primary">
+                {{skill ? skill.name : subcategory?.name}}
+            </h2>
+            <h5 class="ms-3">
+                {{skill ? skill.description : subcategory?.description}}
+            </h5>
+        </div>
+        <div class="filter-and-search-bar">
+            <app-project-filters-bar [skillsubcategoryId]="subcategory?.id" [skillId]="skill?.id"
+                (filterProjectsPreviewEvent)="onFilterProjectsPreview($event)" />
+            <app-projects-search-bar class="animated fadeInRight"
+                (searchProjectsPreviewEvent)="onSearchProjects($event)"></app-projects-search-bar>
+        </div>
+        <div class="projects-preview-container">
+            <button class="project-preview-button" *ngFor="let preview of projectsPreview"
+                (mouseenter)="preview.showButtons = true" (mouseleave)="preview.showButtons = false">
+                <app-project-preview-card [preview]="preview" [isFreelancerPage]="false"></app-project-preview-card>
+            </button>
+        </div>
+        <div class="flex-auto">
+            <p-paginator (onPageChange)="onPageChange($event)" [first]="firstPreviewIndex"
+                [rows]="maxPreviewPerPageCount" [totalRecords]="allProjectsPreview?.totalProjectsCount ?? 0"
+                [showFirstLastIcon]="false" [showCurrentPageReport]="true" [showPageLinks]="false"
+                [showJumpToPageDropdown]="false" [style]="{'color': '#32353b'}"></p-paginator>
+        </div>
+        <app-guides-carousel [skill]="subcategory"></app-guides-carousel>
+    </div>
+</div>

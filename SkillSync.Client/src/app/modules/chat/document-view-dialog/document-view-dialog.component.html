@@ -1,0 +1,8 @@
+<p-dialog [(visible)]="isDialogVisible" styleClass="social-provider-dialog" [style]="{width: '50vw', height: '150vw'}"
+    *ngIf="chatMessage && !checkIfDocumentIsWord(chatMessage.content.toString())" (onHide)="onCloseDialog()">
+    <ng-template pTemplate="headless">
+        <img [src]="url" *ngIf="chatMessage?.type == imageMessage">
+        <app-document-view *ngIf="chatMessage?.type == fileMessage" [documentUrl]="url"></app-document-view>
+    </ng-template>
+</p-dialog>
+<app-document-view *ngIf="chatMessage && checkIfDocumentIsWord(chatMessage.content.toString())" [style]="'display:none'" [documentUrl]="url"></app-document-view>

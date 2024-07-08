@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>36068c96-f1ef-457a-a807-1ef0ee91183b</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNet.Security.OAuth.LinkedIn" Version="7.0.4" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.1" />
+    <PackageReference Include="Azure.Identity" Version="1.12.0" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.6.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.25.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SkillSync.AzureBlobStorage\SkillSync.AzureBlobStorage.csproj" />
+    <ProjectReference Include="..\SkillSync.AzureOpenAiChatBot\SkillSync.AzureOpenAiChatBot.csproj" />
+    <ProjectReference Include="..\SkillSync.Business\SkillSync.Business.csproj" />
+    <ProjectReference Include="..\SkillSync.Chat\SkillSync.Chat.csproj" />
+    <ProjectReference Include="..\SkillSync.CVDataExtractor\SkillSync.CVDataExtractor.csproj" />
+    <ProjectReference Include="..\SkillSync.Email\SkillSync.Email.csproj" />
+    <ProjectReference Include="..\SkillSync.IdentityManager\SkillSync.IdentityManager.csproj" />
+    <ProjectReference Include="..\SkillSync.Notification\SkillSync.Notification.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,109 @@
+<p-dialog [(visible)]="shouldDisplayPayProductsDialog" header="Confirmation" icon="pi pi-exclamation-triangle"
+    [scrollTop]="true" [modal]="true" (onHide)="returnToPreviewTab()">
+    <ng-template pTemplate="header"><h1 class="text-primary">Checkout</h1></ng-template>
+    <ng-template pTemplate="content">
+        <div class="p-d-flex p-flex-column p-justify-between payment-dialog-gap">
+            <div class="p-d-flex p-justify-between sub-title">
+                To access your products, please make the payment!
+            </div>
+            <div class="p-d-flex p-justify-between">
+                <app-paypal-button [amount]="order?.price"
+                    (wasTransactionCompletedSuccessfully)="transactionCompleted($event)"></app-paypal-button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+<app-review-dialog [displayReviewDialog]="displayReviewDialog" [projectId]="order?.projectId"
+    (closeReviewDialog)="closeReviewDialog()"></app-review-dialog>
+
+<p-confirmDialog></p-confirmDialog>
+
+<div class="main-container">
+    <div class="card-container">
+        <h1 class="text-primary mt-2 animated fadeInDown">Order</h1>
+        <h3 class="ms-3 text-primary text-center animated fadeInDown">{{order?.projectTitle}}</h3>
+        <div class="tab-view">
+            <p-tabView [style]="{'height': '90%'}" [(activeIndex)]="activeTabIndex"
+                (activeIndexChange)="tabpanelChanged($event)">
+                <p-tabPanel header="Preview">
+                    <app-order-tabpanel-content [orderId]="order?.id" [orderContentPurpose]="previewOrderContentPurpose"
+                        [orderContents]="order?.previewContents ?? []" [role]="currentUserRole"
+                        [editModeActive]="editModeActive"
+                        (changeOrderStatus)="checkOrderStatusToActive()"></app-order-tabpanel-content>
+                </p-tabPanel>
+                <p-tabPanel header="Final Products" [disabled]="isFinalProductsTabPanelContentDisabled">
+                    <app-order-tabpanel-content #finalProducts [orderId]="order?.id"
+                        [orderContentPurpose]="finalProductOrderContentPurpose"
+                        [orderContents]="order?.finalProductContents ?? []" [role]="currentUserRole"
+                        [editModeActive]="editModeActive"
+                        (changeOrderStatus)="checkOrderStatusToActive()"></app-order-tabpanel-content>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </div>
+    <div class="right-side-container animated fadeInRight">
+        <div class="right-side-content rounded" *ngIf="order">
+            <div class="content">
+                <h4 class="text-secondary">{{currentUserRole == skillScoutRole ? 'From' : 'To'}}</h4>
+                <ng-container
+                    *ngIf="currentUserRole == skillScoutRole; then displayFreelancerProfileLink; else displaySkillscoutName"></ng-container>
+                <ng-template #displayFreelancerProfileLink>
+                    <a (click)="navigateToProfile()">
+                        <div class="package-type link-hover">{{order.freelancerName}}</div>
+                    </a>
+                </ng-template>
+                <ng-template #displaySkillscoutName>
+                    <div>{{order.customerName }}</div>
+                </ng-template>
+            </div>
+            <div class="content">
+                <h4 class="text-secondary">Package type</h4>
+                <div>{{packageTypeToString(order.packageType)}}</div>
+            </div>
+            <div class="content">
+                <h4 class="text-secondary">{{currentUserRole == skillScoutRole ? 'Pay' : 'Earn'}}</h4>
+                <div class="package-type">{{order.price | currencyConverter:
+                    currencyType }}</div>
+            </div>
+            <ng-container
+                *ngIf="displayOrderStatusAsText; then displayAsText; else displayOrderStatusAsDropdown"></ng-container>
+            <ng-template #displayAsText>
+                <div class="content">
+                    <h4 class="text-secondary sub-title">Order status</h4>
+                    <div class="package-type">{{orderStatusToString(order.status)}}</div>
+                </div>
+            </ng-template>
+            <ng-template #displayOrderStatusAsDropdown>
+                <div class="order-status-container">
+                    <h4 class="text-secondary as-c">Order status</h4>
+                    <div class="order-status-content">
+                        <p-dropdown [options]="orderStatuses" (onChange)="orderStatusChanged($event)"
+                            [(ngModel)]="currentOrderStatus" optionLabel="name" />
+                        <div class="save-new-status-buttons" *ngIf="displaySaveNewStatusDialog">
+                            <i class="pi pi-check" (click)="onSaveNewStatus($event)"></i>
+                            <i class="pi pi-times" (click)="onCancelNewStatus()"></i>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-container
+                *ngIf="order.status == pendingOrderStatus || order.status == activeOrderStatus; then displayDueTo; else displayCompletedAt"></ng-container>
+            <ng-template #displayDueTo>
+                <div class="content" *ngIf="order.status == pendingOrderStatus || order.status == activeOrderStatus">
+                    <h4 class="text-secondary">Due to</h4>
+                    <div class="due-to" [ngClass]="{'red-color': isOrderLate}">
+                        {{order.untilTo | date:'dd/MM/YYYY HH:mm'}}</div>
+                </div>
+            </ng-template>
+            <ng-template #displayCompletedAt>
+                <h4 class="text-secondary">At</h4>
+                <div class="due-to">{{order.completedAt | date:'dd/MM/YYYY HH:mm'}}</div>
+            </ng-template>
+            <div class="content">
+                <button type="button" class="button-width px-4 btn btn-secondary rounded-pill animated fadeInRight"
+                    (click)="goToService()">Go to service<i class="fas fa-arrow-right ms-3"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

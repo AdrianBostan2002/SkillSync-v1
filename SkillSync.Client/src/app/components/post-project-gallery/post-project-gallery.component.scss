@@ -1,0 +1,146 @@
+@import "../../shared/base.scss";
+
+.card-content {
+    @include flex-column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+:host ::ng-deep .p-card .p-card-content {
+    @include flex-column;
+    padding: 1.25rem 0;
+    gap: 2em;
+    width: 100%;
+}
+
+:host ::ng-deep .p-card .p-card-body {
+    width: 100%;
+}
+
+:host ::ng-deep .p-card .p-element {
+    width: 60%;
+}
+
+:host ::ng-deep .p-card .p-card-footer {
+    @include flex-row;
+    justify-content: end;
+    padding: 1.25rem 0 0 0;
+}
+
+:host ::ng-deep .p-button .p-element {
+    width: 100%;
+}
+
+.images-container {
+    @include flex-column;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.images {
+    @include flex-row;
+    justify-content: space-between;
+}
+
+.image {
+    flex: 0.3;
+    height: 11em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    box-shadow: 0 0 31px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.text-title {
+    font-weight: 450;
+    font-size: 1.15rem;
+}
+
+.subtitle {
+    font-weight: 3500;
+    font-size: 0.75rem;
+}
+
+.upload-buttons {
+    @include flex-row;
+    justify-content: end;
+    gap: 2em;
+    height: 100%;
+}
+
+.upload-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 100%;
+}
+
+:host {
+    ::ng-deep .upload-button-p {
+        height: 2em;
+        width: 2em !important;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    ::ng-deep .upload-button-p .p-card .p-element{
+        width: 100%;
+    }
+}
+
+.remove-upload-button{
+    display: flex;
+    flex-direction: row;
+}
+
+:host ::ng-deep .remove-upload-button-p {
+    height: 2em;
+    width: 2em !important;
+    box-shadow: none;
+}
+
+.videos {
+    @include flex-row;
+    justify-content: center;
+}
+
+.video {
+    flex: 0.3;
+    height: 11em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    box-shadow: 0 0 31px rgba(0, 0, 0, 0.2);
+    @include flex-row;
+    justify-content: space-between;
+}
+
+.display-video{
+    @include flex-row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+}
+
+.next-previous-button {
+    @extend %post-project-next-previous-buttons;
+}
+
+.documents {
+    @include flex-row;
+    justify-content: space-evenly;
+}
+
+.check-icon{
+    @include flex-column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    margin-right: 2em;
+}

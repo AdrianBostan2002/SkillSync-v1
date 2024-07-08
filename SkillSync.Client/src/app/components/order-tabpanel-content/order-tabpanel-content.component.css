@@ -1,0 +1,113 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 24em;
+}
+
+.left-side-container {
+    flex: 0.9;
+}
+
+.right-side-container {
+    flex: 0.1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.slide-show {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+:host ::ng-deep .p-button-icon-only {
+    width: 2rem;
+    height: 2rem;
+}
+
+:host ::ng-deep .p-speeddial-action {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--bs-primary);
+    color: var(--bs-white);
+    border-radius: 8px;
+}
+
+.slide-show-description {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.content-description {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.document-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75em;
+    padding: 0.5em;
+
+    i {
+        font-size: 2em;
+        color: gray;
+        text-align: center;
+    }
+}
+
+audio {
+    width: 34em !important;
+}
+
+.documents-description {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+}
+
+.documents {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.file-description {
+    text-align: center;
+}
+
+.save-button {
+    bottom: 2em;
+    position: sticky;
+}
+
+.gray-background {
+    background-color: var(--bs-light);
+    width: 35em;
+}
+
+.notes-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.notes-content {
+    flex: 0.8;
+}
+
+:host ::ng-deep .p-speeddial-list {
+    padding-left: 0 !important;
+}
+
+.main-media-options{
+    position: sticky;
+    top: 2em;
+}

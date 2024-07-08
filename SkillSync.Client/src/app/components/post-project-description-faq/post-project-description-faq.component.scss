@@ -1,0 +1,81 @@
+@import "../../shared/base.scss";
+
+.card-content {
+    @include flex-column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15em;
+    padding-right: 10em;
+    gap: 2em;
+}
+
+.text-area-message {
+    @include flex-row;
+    justify-content: space-between;
+    margin-top: 0.5em;
+}
+
+%text-area-under-label{
+    font-size: 0.7em;
+}
+
+.minlenght-message {
+    @extend %text-area-under-label;
+}
+
+.character-counter {
+    @extend %text-area-under-label;
+}
+
+.question-container {
+    @include flex-row;
+    font-size: 0.75em;
+    gap: 2em;
+    justify-content: space-between;
+    width: 100%;
+    word-break: break-word;
+}
+
+::ng-deep .p-icon-wrapper {
+    display: contents;
+}
+
+*:host ::ng-deep .p-fieldset .p-fieldset-legend {
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    background: #f9fafb;
+    font-weight: 700;
+    border-radius: 6px;
+    width: 100% !important;
+}
+
+.next-previous-button {
+    width: 100%;
+    @extend %post-project-next-previous-buttons;
+}
+
+.faq-text {
+    width: 100%;
+    text-align: start;
+    font-weight: 700;
+}
+
+.divider {
+    width: 100%;
+}
+
+.question {
+    align-self: center;
+}
+
+.new-question-button {
+    width: 100%;
+}
+
+.questions {
+    width: 100%;
+}
+
+.edit-delete-icons {
+    align-self: flex-end;
+}

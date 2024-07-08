@@ -1,0 +1,67 @@
+<div class="project-pricing-description-faq">
+    <p-card [style]="{'height' : '100%', 'display' : 'flex', 'flex-direction' : 'row', 'justify-content' : 'center'}">
+        <div class="card-content">
+            <form [formGroup]="descriptionForm">
+                <p-card>
+                    <ng-template pTemplate="title">
+                        <h2 class="text-primary">Description</h2>
+                    </ng-template>
+                    <editor formControlName="description" apiKey={{editorApiKey}} [init]="{
+                    height: 500,
+                    width: 900,
+                    plugins: 'advlist anchor autolink charmap codesample emoticons image insertdatetime media table wordcount link lists media searchreplace table visualblocks wordcount linkchecker',
+                    toolbar:
+                     'undo redo | casechange blocks | bold italic backcolor |
+                     alignleft aligncenter alignright alignjustify |
+                     bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+                  }" initialValue="Welcome to TinyMCE Angular"></editor>
+                </p-card>
+                <div class="text-area-message">
+                    <div class="minlenght-message">
+                        {{minDescriptionLenght}} characters minimum - {{maxDescriptionLenght}} maximum
+                    </div>
+                    <div class="character-counter">
+                        {{characterCounter}}/{{maxDescriptionLenght}}
+                    </div>
+                </div>
+            </form>
+            <div class="divider">
+                <p-divider [style]="{ 'width' : '100%'}" type="solid"></p-divider>
+            </div>
+            <h2 class="text-primary">Frequently Asked Questions</h2>
+            <div class="questions">
+                <ng-container class="field-set-container" *ngFor="let faq of frequentlyAskedQuestions; let i = index">
+                    <p-fieldset [style]="{width: '100%', 'margin-bottom': '1em'}" [toggleable]="true"
+                        [collapsed]="true">
+                        <ng-template pTemplate="header">
+                            <div class="question-container">
+                                <div class="question">{{faq.question}}</div>
+                                <div class="edit-delete-icons">
+                                    <p-button [rounded]="true" (onClick)="editQuestion(i)" [text]="true"
+                                        icon="pi pi-pencil" severity="secondary"></p-button>
+                                    <p-button [rounded]="true" (onClick)="removeQuestion(i)" [text]="true"
+                                        icon="pi pi-times" severity="secondary"></p-button>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <p class="m-0">
+                            {{faq.answer}}
+                        </p>
+                    </p-fieldset>
+                </ng-container>
+            </div>
+            <div class="new-question-button">
+                <p-button (onClick)="newQuestion()" [style]="{'align-self': 'start'}" icon="pi pi-plus"
+                    label="New Question" [text]="true" severity="secondary"></p-button>
+            </div>
+            <app-add-edit-question [isDialogVisible]="isDialogVisible" [question]="addOrUpdateQuestion"
+                (questionModified)="onReceiveAddedOrUpdatedQuestion($event)"></app-add-edit-question>
+            <div class="next-previous-button">
+                <p-button label="Previous" styleClass="btn-secondary rounded w-8rem" (onClick)="navigateToPrev()"
+                    icon="pi pi-angle-left" iconPos="left"></p-button>
+                <p-button label="Next" styleClass="btn-secondary rounded w-8rem" (onClick)="navigateToNext()"
+                    icon="pi pi-angle-right" iconPos="right" [disabled]="descriptionForm.invalid"></p-button>
+            </div>
+        </div>
+    </p-card>
+</div>

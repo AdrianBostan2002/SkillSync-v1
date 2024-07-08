@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.64.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SkillSync.AzureBlobStorage\SkillSync.AzureBlobStorage.csproj" />
+    <ProjectReference Include="..\SkillSync.Data\SkillSync.DataAccess.csproj" />
+    <ProjectReference Include="..\SkillSync.Domain\SkillSync.Domain.csproj" />
+    <ProjectReference Include="..\SkillSync.Email\SkillSync.Email.csproj" />
+    <ProjectReference Include="..\SkillSync.Notification\SkillSync.Notification.csproj" />
+  </ItemGroup>
+
+</Project>

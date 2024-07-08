@@ -1,0 +1,48 @@
+<app-loading-spinner></app-loading-spinner>
+<div class="blurry-gradient-background ">
+    <p-dialog [visible]="true" [style]="{width: '50vw', height: '150vw'}">
+        <ng-template pTemplate="headless">
+            <div class="container">
+                <div class="mid-side-section">
+                    <div class="top-messages">
+                        <h1 class="text-primary">{{mottoMessage}}</h1>
+                        <h4 class="text-primary">{{completeProfileMessage}}</h4>
+                    </div>
+                    <div class="select-skill-container">
+                        <div class="card flex justify-content-center">
+                            <span class="p-float-label">
+                                <p-treeSelect class="w-full md:w-20rem" containerStyleClass="w-full"
+                                    [options]="groupedSkills" [metaKeySelection]="false" selectionMode="checkbox"
+                                    placeholder="Select Item" display="chip" [filter]="true"
+                                    [filterInputAutoFocus]="true" (onNodeSelect)="onNodeSelect($event)"
+                                    (onNodeUnselect)="onNodeUnselect($event)">
+                                </p-treeSelect>
+                                <label for="SelectSkill">Select Skill</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="brief-description">
+                        <form [formGroup]="experienceInfoForm">
+                            <span class="p-float-label">
+                                <textarea formControlName="scopeDescription" rows="10" cols="42" pInputTextarea
+                                    [autoResize]="true"></textarea>
+                                <label for="float-input">Profile description
+                                </label>
+                            </span>
+                            <app-characters-counter [minCount]="minDescriptionLength" [maxCount]="maxDescriptionLength"
+                                [characterCounter]="characterCounter"></app-characters-counter>
+                        </form>
+                    </div>
+                    <div class="continue-button-container">
+                        <div class="continue-button">
+                            <button (click)="onContinue()" class="button-width px-4 btn btn-primary rounded-pill"
+                                [disabled]="experienceInfoForm.invalid">
+                                Continue<i class="fas fa-arrow-right ms-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dialog>
+</div>

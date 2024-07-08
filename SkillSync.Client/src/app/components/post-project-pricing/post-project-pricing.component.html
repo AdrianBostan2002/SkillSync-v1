@@ -1,0 +1,167 @@
+<div class="project-pricing-content">
+    <p-card [style]="{'height' : '100%', 'display' : 'flex', 'flex-direction' : 'row', 'justify-content' : 'center'}">
+        <div class="card-content">
+            <p-card>
+                <ng-template pTemplate="title">
+                    <h2 class="text-primary">Pricing</h2>
+                </ng-template>
+                <div class="offer-packages-container">
+                    <span class="offer-packages-text mb-3">Offer packages</span>
+                    <p-inputSwitch [(ngModel)]="hasPackages"></p-inputSwitch>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="packages" rowspan="3" scope="colgroup">Packages</th>
+                            <th id="basic" scope="colgroup">Basic</th>
+                            <th id="standard" scope="col">Standard</th>
+                            <th id="premium" scope="col">Premium</th>
+                        </tr>
+                        <tr *ngIf="packageTitleIndex!=undefined && textAreaOptions!=undefined">
+                            <th [style]="{'padding': '0'}" headers="basic" scope="col">
+                                <textarea [(ngModel)]="textAreaOptions[packageTitleIndex].basicSelectedValue"
+                                    placeholder="Name your basic package" rows="4" cols="30"></textarea>
+                            </th>
+                            <th [style]="{'padding': '0'}" headers="standard" scope="col">
+                                <textarea [(ngModel)]="textAreaOptions[packageTitleIndex].standardSelectedValue"
+                                    placeholder="Name your standard package" rows="4" cols="30"
+                                    [disabled]="!hasPackages"></textarea>
+                            </th>
+                            <th [style]="{'padding': '0'}" headers="premium" scope="col">
+                                <textarea [(ngModel)]="textAreaOptions[packageTitleIndex].premiumSelectedValue"
+                                    placeholder="Name your premium package" rows="4" cols="30"
+                                    [disabled]="!hasPackages"></textarea>
+                            </th>
+                        </tr>
+                        <tr *ngIf="packageDescriptionIndex!=undefined && textAreaOptions!=undefined">
+                            <th [style]="{'padding': '0'}" headers="basic" scope="col">
+                                <textarea [(ngModel)]="textAreaOptions[packageDescriptionIndex].basicSelectedValue"
+                                    placeholder="Describe the details of your offering" rows="6" cols="30"></textarea>
+                            </th>
+                            <th [style]="{'padding': '0'}" headers="standard" scope="col">
+                                <textarea [(ngModel)]="textAreaOptions[packageDescriptionIndex].standardSelectedValue"
+                                    placeholder="Describe the details of your offering" rows="6" cols="30"
+                                    [disabled]="!hasPackages"></textarea>
+                            </th>
+                            <th [style]="{'padding': '0'}" headers="premium" scope="col">
+                                <textarea [(ngModel)]="textAreaOptions[packageDescriptionIndex].premiumSelectedValue"
+                                    placeholder="Describe the details of your offering" rows="6" cols="30"
+                                    [disabled]="!hasPackages"></textarea>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="checkBoxOptions && checkBoxOptions.length > 0">
+                        <tr *ngFor="let checkboxOption of checkBoxOptions">
+                            <td>{{ checkboxOption.name }}</td>
+                            <td>
+                                <p-checkbox [(ngModel)]="checkboxOption.basicSelectedValue" [binary]="true"
+                                    inputId="binary"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox [(ngModel)]="checkboxOption.standardSelectedValue" [disabled]="!hasPackages"
+                                    [binary]="true" inputId="binary"></p-checkbox>
+                            </td>
+                            <td>
+                                <p-checkbox [(ngModel)]="checkboxOption.premiumSelectedValue" [disabled]="!hasPackages"
+                                    [binary]="true" inputId="binary"></p-checkbox>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="dropdownOptions && dropdownOptions.length > 0">
+                        <tr *ngFor="let dropdownOption of dropdownOptions">
+                            <td>{{ dropdownOption.name }}</td>
+                            <td>
+                                <p-dropdown [options]="dropdownOption.values" optionLabel="name" [showClear]="false"
+                                    [style]="{'height': '90%', width: '7rem'}"
+                                    [(ngModel)]="dropdownOption.basicSelectedValue">
+                                    <ng-template let-option pTemplate="item">
+                                        {{option}}
+                                    </ng-template>
+                                    <ng-template let-item pTemplate="selectedItem">
+                                        {{item}}
+                                    </ng-template>
+                                </p-dropdown>
+                            </td>
+                            <td>
+                                <p-dropdown [options]="dropdownOption.values" optionLabel="name" [showClear]="false"
+                                    [style]="{'height': '90%', width: '7rem'}"
+                                    [(ngModel)]="dropdownOption.standardSelectedValue" [disabled]="!hasPackages">
+                                    <ng-template let-option pTemplate="item">
+                                        {{option}}
+                                    </ng-template>
+                                    <ng-template let-item pTemplate="selectedItem">
+                                        {{item}}
+                                    </ng-template>
+                                </p-dropdown>
+                            </td>
+                            <td>
+                                <p-dropdown [options]="dropdownOption.values" optionLabel="name" [showClear]="false"
+                                    [style]="{'height': '90%', width: '7rem'}"
+                                    [(ngModel)]="dropdownOption.premiumSelectedValue" [disabled]="!hasPackages">
+                                    <ng-template let-option pTemplate="item">
+                                        {{option}}
+                                    </ng-template>
+                                    <ng-template let-item pTemplate="selectedItem">
+                                        {{item}}
+                                    </ng-template>
+                                </p-dropdown>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="textAreaOptions && textAreaOptions.length > 0">
+                        <tr *ngFor="let textAreaOption of textAreaOptions"
+                            ngIf="isNotMandatoryFreeText(textAreaOption)">
+                            <td>{{ textAreaOption.name }}</td>
+                            <td [style]="{'padding': '0'}">
+                                <textarea [(ngModel)]="textAreaOption.basicSelectedValue"
+                                    placeholder="Name your basic package" rows="4" cols="30"></textarea>
+                            </td>
+                            <td [style]="{'padding': '0'}">
+                                <textarea [(ngModel)]="textAreaOption.standardSelectedValue"
+                                    placeholder="Name your basic package" rows="4" cols="30"></textarea>
+                            </td>
+                            <td [style]="{'padding': '0'}">
+                                <textarea [(ngModel)]="textAreaOption.premiumSelectedValue"
+                                    placeholder="Name your basic package" rows="4" cols="30"></textarea>
+                            </td>
+                        </tr>
+                        <tr *ngIf="priceIndex!=undefined && textAreaOptions">
+                            <td>{{ textAreaOptions[priceIndex].name }}</td>
+                            <td>
+                                <div class="dropdown-option">
+                                    <p-inputNumber [(ngModel)]="textAreaOptions[priceIndex].basicSelectedValue"
+                                        inputId="currency-us" mode="currency" currency="USD" locale="en-US"
+                                        placeholder="1" [minFractionDigits]="0" [min]="1" lass="w-full"
+                                        styleClass="w-full"></p-inputNumber>
+                                </div>
+                            </td>
+                            <td>
+                                <p-inputNumber [(ngModel)]="textAreaOptions[priceIndex].standardSelectedValue"
+                                    inputId="currency-us" mode="currency" currency="USD" locale="en-US"
+                                    [disabled]="!hasPackages" [minFractionDigits]="0" [min]="1" lass="w-full"
+                                    styleClass="w-full"></p-inputNumber>
+                            </td>
+                            <td>
+                                <p-inputNumber [(ngModel)]="textAreaOptions[priceIndex].premiumSelectedValue"
+                                    inputId="currency-us" mode="currency" currency="USD" locale="en-US"
+                                    [disabled]="!hasPackages" [minFractionDigits]="0" [min]="1" lass="w-full"
+                                    styleClass="w-full"></p-inputNumber>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template pTemplate="footer">
+                    <div class="error-message" *ngIf="shouldDisplayErrorMessage">
+                        {{errorMessage}}
+                    </div>
+                    <div class="next-previous-button">
+                        <p-button label="Previous" (onClick)="navigateToPrev()" icon="pi pi-angle-left" iconPos="left"
+                            styleClass="btn-secondary rounded w-8rem"></p-button>
+                        <p-button label="Next" (onClick)="navigateToNext()" icon="pi pi-angle-right" iconPos="right"
+                            styleClass="btn-secondary rounded w-8rem"></p-button>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </p-card>
+</div>

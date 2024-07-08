@@ -1,0 +1,32 @@
+<div class="media-main-container">
+    <div class="media-container">
+        <div class="previous-next-media-button">
+            <p-button [rounded]="true" [text]="true" [raised]="true" [text]="true" icon="pi pi-angle-left"
+                 [style]="{'background-color': '#fff', 'width': '2em', 'height': '2em'}"
+                (onClick)="onPreviousMedia()" *ngIf="media && media.length > 1" styleClass="rounded-circle">
+            </p-button>
+        </div>
+        <ng-container *ngIf="media && media.length>0; then displaySlideShow; else displayEmptyText"></ng-container>
+        <ng-template #displaySlideShow>
+            <div class="media-slideshow" *ngIf="media?.[slideShowIndex]?.fileType == imageFileType"
+                [ngStyle]="{'background-image': 'url(\'' + media?.[slideShowIndex]?.url + '\')', 'object-fit': 'cover', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}">
+            </div>
+            <div class="video-container" *ngIf="media?.[slideShowIndex]?.fileType == videoFileType">
+                <video #videoPlayer controls class="video">
+                    <source [src]="media?.[slideShowIndex]?.url" type="video/mp4">
+                </video>
+            </div>
+        </ng-template>
+        <ng-template #displayEmptyText>
+            <div class="media-slideshow">
+                <div class="no-media-uploaded-text">No Media Uploaded</div>
+            </div>
+        </ng-template>
+        <div class="previous-next-media-button">
+            <p-button [rounded]="true" [text]="true" [raised]="true" [text]="true" icon="pi pi-angle-right"
+                 [style]="{'background-color': '#fff', 'width': '2em', 'height': '2em'}"
+                styleClass="rounded-circle" (onClick)="onNextMedia()" *ngIf="media && media.length > 1">
+            </p-button>
+        </div>
+    </div>
+</div>

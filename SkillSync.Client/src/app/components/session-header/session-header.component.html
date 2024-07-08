@@ -1,0 +1,58 @@
+<div class="container-fluid bg-primary">
+    <div class="container">
+        <nav class="navbar navbar-dark navbar-expand-lg py-0">
+            <a routerLink="/home" class="navbar-brand">
+                <h1 class="text-white fw-bold d-block">Skill<span class="text-secondary">Sync</span> </h1>
+            </a>
+            <app-search-bar></app-search-bar>
+            <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
+                <div class="navbar-nav ms-auto mx-xl-auto p-0">
+                    <div class="end-side">
+                        <app-push-notification></app-push-notification>
+                        <i class="pi pi-shopping-cart" (click)="onNavigateToOrdersClick()" severity="danger"
+                            style="cursor: pointer; font-size: 1.25rem; align-self: center; color: white"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="d-none d-xl-flex flex-shirink-0">
+                <p-overlayPanel #op4>
+                    <ng-template pTemplate="content">
+                        <div class="profile-option">
+                            <div>
+                                <p-dropdown [style]="{width: '12em'}" [options]="currencyOptions" [editable]="true"
+                                    [(ngModel)]="selectedCurrency" optionLabel="label" placeholder="Pick Currency"
+                                    (onChange)="onCurrencyChange(selectedCurrency)">
+                                </p-dropdown>
+                            </div>
+                            <p-button [style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': 'black' }"
+                                [text]="true" label="About" (onClick)="onAbout()" severity="secondary"></p-button>
+                            <p-button [style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': 'black' }"
+                                [text]="true" label="Contact" (onClick)="onContact()" severity="secondary"></p-button>
+                            <p-button *ngIf="role == freelancerRole"[style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': 'black' }"
+                                [text]="true" label="Profile" severity="secondary"
+                                (onClick)="onNavigateToProfileClick()"></p-button>
+                            <p-button *ngIf="role == freelancerRole"
+                                [style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': 'black' }"
+                                [text]="true" label="Add Project" severity="secondary"
+                                (onClick)="onAddProject()"></p-button>
+                            <p-button *ngIf="role == freelancerRole"
+                                [style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': 'black' }"
+                                [text]="true" label="Dashboard" severity="secondary"
+                                (onClick)="onViewProjects()"></p-button>
+                            <p-divider [style]="{margin: '0.5rem 0'}" />
+                            <p-button [style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': 'black' }"
+                                [text]="true" label="Logout" severity="secondary"
+                                (onClick)="onLogoutClick()"></p-button>
+                        </div>
+                    </ng-template>
+                </p-overlayPanel>
+                <img src={{avatarPath}} (click)="op4.toggle($event)"
+                    class="avatar-size rounded-circle border border-3 border-white" alt="profile-picture">
+            </div>
+        </nav>
+    </div>
+</div>

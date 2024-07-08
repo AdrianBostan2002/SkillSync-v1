@@ -1,0 +1,21 @@
+<div class="main-container">
+    <div class="top-container">
+        <h1 class="text-primary mb-3">Projects Dashboard</h1>
+        <h5>Here, you can manage and track all your freelance projects in one place. Keep an eye on your progress,
+            stay updated with the latest developments, and ensure timely delivery to your clients.</h5>
+        <div class="add-project-button-container">
+            <button type="button"
+                class="button-width px-4 btn btn-secondary rounded-pill animated fadeInRight"
+                routerLink="/post-project">
+                <i class="fas fa-plus"></i>
+                Add Project</button>
+        </div>
+    </div>
+    <p-tabView (activeIndexChange)="retrieveProjects($event)">
+        <p-tabPanel header="{{project.label}}" *ngFor="let project of freelancerProjects">
+            <div class="package-content">
+                <app-freelancer-projects-table [projects]="project.projects" />
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</div>

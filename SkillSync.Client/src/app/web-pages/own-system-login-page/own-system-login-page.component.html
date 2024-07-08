@@ -1,0 +1,46 @@
+<app-loading-spinner />
+<div class="blurry-gradient-background">
+    <p-dialog [visible]="true" [style]="{width: '50vw', height: '100%'}" styleClass="dialog">
+        <ng-template pTemplate="headless">
+            <form [formGroup]="loginForm">
+                <div class="login-form">
+                    <div class="divider-left-side">
+                        <app-choose-social-providers-mottos></app-choose-social-providers-mottos>
+                    </div>
+                    <div class="divider-right-side">
+                        <div class="top-messages">
+                            <h2 class="text-primary">{{welcomeMessage}}</h2>
+                            <div class="register-message">{{registerMessage}}</div>
+                        </div>
+                        <div class="email-and-password-container">
+                            <span class="p-float-label">
+                                <input pInputText id="email" formControlName="email" />
+                                <label for="email">Email</label>
+                            </span>
+                            <span class="p-float-label">
+                                <p-password styleClass="password-label" [style]="{width: '16.6rem'}"
+                                    formControlName="password" [feedback]="false" [toggleMask]="true"
+                                    [style]="{width: '100%'}"></p-password>
+                                <label for="email">Password</label>
+                            </span>
+                        </div>
+                        <div class="continue-button">
+                            <p-button label="Continue" (onClick)="loginButton()"
+                                styleClass="button-width px-4 btn btn-secondary rounded-pill"
+                                [disabled]="loginForm.invalid"></p-button>
+                        </div>
+                        <div class="terms-and-conditions">
+                            By joining, you agree to the SkillSync <a routerLink="/home">Terms of Service</a> and to
+                            occasionally
+                            receive emails from us. Please read our <a routerLink="/home">Privacy Policy</a> to learn how we use
+                            your personal data.
+                        </div>
+                        <div class="back-button">
+                            <app-back-button [route]="'/choose-login-provider'" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+    </p-dialog>
+</div>

@@ -1,0 +1,74 @@
+<div class="main-container">
+    <p-overlayPanel #op [hideTransitionOptions]="'.2s ease-out'">
+        <ng-template pTemplate="content">
+            <div class="notifications-container">
+                <div class="notifications">
+                    <div class="notification" *ngFor="let notification of activityNotifications"
+                        (click)="setNotificationAsRead(notification)"
+                        [ngClass]="{'active-notification-background': !notification.isRead}">
+                        <img src={{notification.profilePicture}}
+                            class="avatar-size rounded-circle border border-2 border-secondary" alt="profile-picture">
+                        <div class="content-data">
+                            <div class="content">{{notification.content}}</div>
+                            <div class="upper-notification-data">
+                                <div class="sender-name">{{notification.name}}</div>
+                                <div class="data">{{notification.sentAt | date:'dd-MM HH:mm'}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+    <p-overlayPanel #op2 [hideTransitionOptions]="'.2s ease-out'">
+        <div class="notifications-container">
+            <div class="notifications">
+                <div class="notification" *ngFor="let notification of inboxNotifications"
+                    (click)="setNotificationAsRead(notification)" (dblclick)="onInboxNotificationSelected(notification)"
+                    [ngClass]="{'active-notification-background': !notification.isRead}">
+                    <img src={{notification.profilePicture}}
+                        class="avatar-size rounded-circle border border-2 border-secondary" alt="profile-picture">
+                    <div class="content-data">
+                        <div class="content">{{notification.content}}</div>
+                        <div class="upper-notification-data">
+                            <div class="sender-name">{{notification.name}}</div>
+                            <div class="data">{{notification.sentAt | date:'dd-MM HH:mm'}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="see-inbox" (click)="onNavigateToChatClick()">See all in inbox</div>
+        </div>
+    </p-overlayPanel>
+    <ng-container
+        *ngIf="!countOfUnReadActivityNotifications || countOfUnReadActivityNotifications < 1; then simpleBellIcon; else bellIconWithBadge" />
+    <ng-template #simpleBellIcon>
+        <div class="icon-container">
+            <i class="pi pi-bell" (click)="op.toggle($event)"
+                style="cursor: pointer; font-size: 1.25rem; align-self: center; color: white"></i>
+        </div>
+    </ng-template>
+    <ng-template #bellIconWithBadge>
+        <div class="icon-container">
+            <i class="pi pi-bell" (click)="op.toggle($event)" pBadge severity="danger"
+                style="cursor: pointer; font-size: 1.25rem; align-self: center; color: white"
+                value={{countOfUnReadActivityNotifications}}></i>
+        </div>
+    </ng-template>
+
+    <ng-container
+        *ngIf="!countOfUnReadInboxNotifications || countOfUnReadInboxNotifications < 1; then simpleEnvelopeIcon; else envelopeIconWithBadge" />
+    <ng-template #simpleEnvelopeIcon>
+        <div class="icon-container">
+            <i class="pi pi-envelope" (click)="op2.toggle($event)" (dblclick)="onNavigateToChatClick()"
+                style="cursor: pointer; font-size: 1.25rem; align-self: center; color: white"></i>
+        </div>
+    </ng-template>
+    <ng-template #envelopeIconWithBadge>
+        <div class="icon-container">
+            <i class="pi pi-envelope" (click)="op2.toggle($event)" (dblclick)="onNavigateToChatClick()"
+                severity="danger" pBadge style="cursor: pointer; font-size: 1.25rem; align-self: center;  color: white"
+                value={{countOfUnReadInboxNotifications}}></i>
+        </div>
+    </ng-template>
+</div>

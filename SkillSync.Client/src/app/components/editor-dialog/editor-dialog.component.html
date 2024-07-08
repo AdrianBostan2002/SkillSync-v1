@@ -1,0 +1,23 @@
+<p-dialog [(visible)]="isDialogVisible" [style]="{'max-height' : '100%'}" (onHide)="onCloseDialog()">
+    <ng-template pTemplate="header">
+        <h1 class="text-primary">Notes</h1>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <form [formGroup]="contentForm">
+            <editor formControlName="content" apiKey={{editorApiKey}} [init]="{
+                height: 400,
+                plugins: 'advlist anchor autolink charmap codesample emoticons image insertdatetime media table wordcount link lists media searchreplace table visualblocks wordcount linkchecker',
+                toolbar:
+                'undo redo | casechange blocks | bold italic backcolor |
+                alignleft aligncenter alignright alignjustify |
+                bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+            }" initialValue="Notes"></editor>
+            <div class="buttons">
+                <p-button (onClick)="onSave()" icon="pi pi-check" label="Save" styleClass="btn-primary rounded"
+                    [disabled]="contentForm.invalid"></p-button>
+                <p-button (onClick)="onCloseDialog()" icon="pi pi-times" label="Cancel"
+                    styleClass="btn-primary rounded"></p-button>
+            </div>
+        </form>
+    </ng-template>
+</p-dialog>

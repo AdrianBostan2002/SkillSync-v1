@@ -1,0 +1,137 @@
+.project-preview-button-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.project-preview-picture-container{
+    flex: 0.5;
+}
+
+.project-preview-picture {
+    width: 22em;
+    height: 17em;
+    object-fit: fill;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.project-preview-picture:hover {
+    cursor: pointer;
+}
+
+.freelancer-details-container-and-image-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.image-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.image-buttons p-button:first-child {
+    margin-right: auto;
+}
+
+.image-buttons p-button:last-child {
+    margin-left: auto;
+}
+
+.project-preview-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* gap: 1em; */
+    padding: 1em;
+    flex: 0.5;
+}
+
+.freelancer-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 1em;
+}
+
+.freelancer-text {
+    align-self: center;
+}
+
+.freelancer-name {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.freelancer-name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.project-preview-text-title {
+    font-family: "Signika", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-size: 1em;
+    text-align: left;
+    color: #32353b;
+    overflow-wrap: anywhere;
+}
+
+.project-preview-text-title:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.3em;
+    cursor: pointer;
+}
+
+.rating-price-and-add-to-favorite-icon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rating-price-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 0.1em;
+    align-items: center;
+}
+
+.rating-aproximation {
+    font-weight: 900;
+    margin-right: 0.1em;
+}
+
+.number-of-reviews {
+    font-weight: 900;
+}
+
+.project-preview-price {
+    font-family: "Signika", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 1em;
+    text-align: left;
+    width: 100%;
+    color: #64748b;
+}
+
+.add-favorite-icon {
+    align-self: center;
+}

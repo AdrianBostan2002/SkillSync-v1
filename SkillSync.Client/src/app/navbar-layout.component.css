@@ -1,0 +1,9 @@
+.content{
+    height: 100%;
+}
+
+app-loading-spinner{
+    position: fixed;
+    top: 50%;
+    right: 50%;
+}

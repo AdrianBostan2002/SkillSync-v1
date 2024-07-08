@@ -1,0 +1,64 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    align-items: center;
+}
+
+.media {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: space-between;
+    position: relative;
+}
+
+:host ::ng-deep .p-speeddial {
+    position: relative;
+    display: block;
+}
+
+:host ::ng-deep .p-button-icon-only {
+    width: 2rem;
+    height: 2rem;
+}
+
+:host ::ng-deep .p-speeddial-action {
+    width: 2rem;
+    height: 2rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+    width: 100%;
+}
+
+.document-preview{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    width: 7em;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+i {
+    font-size: 2em;
+    color: gray;
+}
+
+.spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pi-check-circle{
+    color: green;
+}

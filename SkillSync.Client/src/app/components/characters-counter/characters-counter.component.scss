@@ -1,0 +1,18 @@
+@import "../../shared/base.scss";
+
+.counter {
+    @include flex-row;
+    justify-content: space-between;
+}
+
+%text-area-under-label {
+    font-size: 0.7em;
+}
+
+.minlenght-message {
+    @extend %text-area-under-label;
+}
+
+.character-counter {
+    @extend %text-area-under-label;
+}

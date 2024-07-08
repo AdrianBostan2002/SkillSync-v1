@@ -1,0 +1,102 @@
+<div class="filters">
+    <p-overlayPanel #op (onShow)="onFeaturesShow()" (onHide)="overlayOpens[0] = false">
+        <ng-template pTemplate="content">
+            <div class="filter-section-column">
+                <h6 class="text-primary">Features</h6>
+                <div class="feature-section">
+                    <div *ngFor="let feature of features">
+                        <p-checkbox [(ngModel)]="feature.isSelected" [value]="feature" [binary]="true"
+                            label="{{ feature.feature.name }}"></p-checkbox>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+    <p-button (click)="op.toggle($event)" [outlined]="true" severity="secondary" label="Service options"
+        [icon]="'pi pi-arrow-down'" [ngClass]="{'rotate-up': overlayOpens[0], 'rotate-down': !overlayOpens[0]}"
+        iconPos="right" styleClass="btn-secondary rounded animated fadeInLeft"></p-button>
+    <p-overlayPanel #op2 (onShow)="onSellerDetailsShow()" (onHide)="overlayOpens[1] = false">
+        <ng-template pTemplate="content">
+            <div class="seller-details-section">
+                <div class="rating-section">
+                    <h6 class="text-primary">Rating</h6>
+                    <div>
+                        <div *ngFor="let rating of ratings; let i = index">
+                            <p-radioButton [(ngModel)]="selectedRating" value="{{i+1}}" name="{{i+1}}"
+                                label="{{ rating }} stars"></p-radioButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="sellers-lives-in-section">
+                    <h6 class="text-primary">Seller lives in</h6>
+                    <div>
+                        <div *ngFor="let location of sellerLocations">
+                            <p-checkbox [(ngModel)]="location.isSelected" [value]="location" [binary]="true"
+                                label="{{ location.name }}"></p-checkbox>
+                        </div>
+                    </div>
+                    <div (click)="onLoadMoreCountries()" class="load-more-countries-button">Load more countries</div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+    <p-button (click)="op2.toggle($event)" [outlined]="true" severity="secondary" label="Seller details"
+        [icon]="'pi pi-arrow-down'" [ngClass]="{'rotate-up': overlayOpens[1], 'rotate-down': !overlayOpens[1]}"
+        iconPos="right" styleClass="btn-secondary rounded animated fadeInLeft"></p-button>
+    <p-overlayPanel #op3 (onShow)="onBuget()" (onHide)="overlayOpens[2] = false">
+        <ng-template pTemplate="content">
+            <div class="filter-section">
+                <div class="price-section">
+                    <h6 class="text-primary">Price</h6>
+                    <div class="column-section">
+                        <div *ngFor="let price of priceRanges; let i = index">
+                            <p-radioButton [(ngModel)]="selectedPriceIndex" value="{{i}}" name="{{i}}"
+                                label="{{ price.label }}"></p-radioButton>
+                        </div>
+                        <div>
+                            <p-inputNumber (ngModelChange)="rangeValues = [rangeValues[0], rangeValues[1]]"
+                                [disabled]="priceRanges[selectedPriceIndex ?? 0].label !== 'Custom'"
+                                [readonly]="false" [(ngModel)]="rangeValues[0]" inputId="currency-us" mode="currency"
+                                currency="USD" locale="en-US" placeholder="1" [minFractionDigits]="0" [min]="1"
+                                [max]="100000" lass="w-full" styleClass="w-full mb-3"></p-inputNumber>
+                            <p-inputNumber (ngModelChange)="rangeValues = [rangeValues[0], rangeValues[1]]"
+                                [disabled]="priceRanges[selectedPriceIndex ?? 0].label !== 'Custom'"
+                                [readonly]="false" [(ngModel)]="rangeValues[1]" inputId="currency-us" mode="currency"
+                                currency="USD" locale="en-US" placeholder="1" [minFractionDigits]="0" [min]="1"
+                                [max]="100000" lass="w-full" styleClass="w-full mb-3"></p-inputNumber>
+                            <p-slider [disabled]="priceRanges[selectedPriceIndex ?? 0].label !== 'Custom'"
+                                [(ngModel)]="rangeValues" [min]="1" [max]="100000" [range]="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+    <p-button (click)="op3.toggle($event)" [outlined]="true" severity="secondary" label="Budget"
+        [icon]="'pi pi-arrow-down'" [ngClass]="{'rotate-up': overlayOpens[2], 'rotate-down': !overlayOpens[2]}"
+        class="arrow-button" iconPos="right" styleClass="btn-secondary rounded animated fadeInLeft">
+    </p-button>
+    <p-overlayPanel #op4 (onShow)="onDeliveryTime()" (onHide)="overlayOpens[3] = false">
+        <ng-template pTemplate="content">
+            <div class="filter-section">
+                <div class="delivery-time-section">
+                    <h6 class="text-primary">Delivery time</h6>
+                    <div class="column-section">
+                        <div *ngFor="let deliveryTime of deliveryTimes; let i = index">
+                            <p-radioButton [(ngModel)]="selectedDeliveryTimeIndex" value="{{i}}" name="{{i}}"
+                                label="{{deliveryTime.label}}"></p-radioButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+    <p-button (click)="op4.toggle($event)" [outlined]="true" severity="secondary" label="Delivery time"
+        [icon]="'pi pi-arrow-down'" [ngClass]="{'rotate-up': overlayOpens[3], 'rotate-down': !overlayOpens[3]}"
+        iconPos="right" styleClass="btn-secondary rounded animated fadeInLeft"></p-button>
+    <p-button (click)="onApplyFilters()" label="Apply filters"
+        styleClass="btn-primary rounded animated fadeInLeft"></p-button>
+    <button (click)="deleteAllAppliedFilters()" class="delete-filters-button rounded btn-danger">
+        <i class="fa fa-trash"></i>
+    </button>
+</div>

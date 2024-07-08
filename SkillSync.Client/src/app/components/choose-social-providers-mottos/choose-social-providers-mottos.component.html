@@ -1,0 +1,14 @@
+<div class="content">
+    <div class="mottos">
+        <h2 class="main-motto text-white">
+            {{mainMotto}}
+        </h2>
+        <div class="motto text-white" *ngFor="let motto of mottos">
+            <i styleClass="icon-check" class="pi pi-check"></i>
+            <span class="motto-text text-white">{{motto}}</span>
+        </div>
+    </div>
+    <div class="image">
+        <img class="image-content" src="assets/resources/men-at-office.png" alt="Image">
+    </div>
+</div>

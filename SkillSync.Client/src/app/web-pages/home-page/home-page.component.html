@@ -1,0 +1,27 @@
+<div class="container-fluid px-0">
+    <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img src="../../../assets/img/carousel-1.jpg" class="img-fluid" alt="First slide">
+                <div class="carousel-caption">
+                    <div class="container carousel-content">
+                        <h6 class="text-secondary h1 animated fadeInUp">SkillSync</h6>
+                        <h1 class="text-white display-2 mb-4 animated fadeInRight">Your Gateway to Exceptional Freelance
+                            Services
+                        </h1>
+                        <app-search-bar class="w-75 align-self-center mb-4 text-white fs-5 animated fadeInRight" />
+                        <a  class="me-2"><button type="button"
+                                class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact
+                                Us</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-about-us-page/>
+<app-services-list [categories]="categories"/>
+<app-our-clients-carousel />
+<app-our-clients-reviews />
+<app-about-chatbot-section />
+<app-guides-carousel />

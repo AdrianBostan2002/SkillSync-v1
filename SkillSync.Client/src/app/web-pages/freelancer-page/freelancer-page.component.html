@@ -1,0 +1,90 @@
+<div class="main-container">
+    <div class="d-flex flex-row">
+        <div class="left-side-container">
+        </div>
+        <div class="d-flex flex-column p-3 gap-4 card-container">
+            <div class="d-flex flex-row justify-content-left align-items-center gap-3">
+                <p-avatar [style]="{'width': '3em', 'height': '3em'}" image={{freelancer?.profilePicture}}
+                    styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+                <div class="d-flex flex-column gap-1">
+                    <h2 class="mb-0 text-primary">{{freelancer?.name}}</h2>
+                    <div class="d-flex flex-row justify-content-left align-items-center rating" *ngIf="freelancer?.reviews?.reviewStatistics">
+                        <i class="pi pi-star-fill"></i>
+                        <span
+                            class="rating-aproximation">{{freelancer?.reviews?.reviewStatistics?.averageRating}}</span>
+                        <span class="number-of-reviews">({{freelancer?.reviews?.reviewStatistics?.totalReviews}})</span>
+                    </div>
+                    <span class="freelancer-country-text"><img
+                            [class]="'flag flag-' + freelancer?.countryCode?.toLowerCase()" class="flag-size" />
+                        {{freelancerCountryName}}</span>
+                </div>
+            </div>
+            <div class="d-flex flex-column gap-1">
+                <h4 class="text-primary">About me</h4>
+                <div class="freelancer-description-text">{{freelancer?.description}}</div>
+            </div>
+            <div class="d-flex flex-column profile-section">
+                <h4 class="text-primary">Skills</h4>
+                <div class="d-flex flex-row flex-wrap gap-2">
+                    <p-chip label="{{skill.skillName}}" *ngFor="let skill of freelancer?.skills"
+                        (click)="onSelectedSkill(skill)" styleClass="btn-secondary"></p-chip>
+                </div>
+            </div>
+            <div class="projects">
+                <h4 class="text-primary mb-3">Projects</h4>
+                <div class="projects-preview-container">
+                    <button class="d-flex flex-column gap-3 w-100 bg-white project-preview-button" *ngFor="let preview of projectsPreview"
+                        (mouseenter)="preview.showButtons = true" (mouseleave)="preview.showButtons = false">
+                        <app-project-preview-card [preview]="preview"
+                            [isFreelancerPage]="true"></app-project-preview-card>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-auto">
+                <p-paginator (onPageChange)="onPageChange($event)" [first]="firstPreviewIndex"
+                    [rows]="maxPreviewPerPageCount" [totalRecords]="freelancer?.projects?.length ?? 0"
+                    [showFirstLastIcon]="false" [style]="{'color': '#32353b'}"></p-paginator>
+            </div>
+            <div class="sub-title">
+                <h4 class="text-primary">Reviews</h4>
+                <app-reviews-statistic [reviewStatistics]="reviewStatistics ?? []"
+                    [totalReviews]="freelancer?.reviews?.reviews?.length ?? 1"></app-reviews-statistic>
+            </div>
+            <div class="d-flex flex-column profile-section" *ngIf="freelancer?.reviews?.reviews?.length">
+                <h4 class="text-primary">
+                    People Reviews
+                </h4>
+                <div class="d-flex flex-row" *ngFor="let review of freelancer?.reviews?.reviews">
+                    <div class="d-flex flex-column review-container">
+                        <div class="d-flex flex-row align-items-center review-header">
+                            <p-avatar image="{{freelancer?.reviews?.usersProfilePicture?.[review.reviewerName]}}"
+                                styleClass="mr-2" size="normal" shape="circle"></p-avatar>
+                            <div class="reviewer-name">{{review?.reviewerName}}</div>
+                        </div>
+                        <div class="d-flex flex-column review-body">
+                            <div class="stars-rating">
+                                <p-rating [readonly]="true" [cancel]="false" [(ngModel)]="review.stars"
+                                    [stars]="5"></p-rating>
+                                <span class="review-date"> | {{review?.reviewAt | date:'dd.MM.YYYY HH:mm'}}</span>
+                            </div>
+                            <div class="content">
+                                {{review?.content}}
+                            </div>
+                        </div>
+                    </div>
+                    <p-divider layout="vertical" />
+                    <div class="d-flex gap-3 p-2 project-details" (click)="onSelectedProjectReview(review)">
+                        <img class="align-self-center project-picture" [src]="freelancer?.reviews?.projects?.[review.projectId]?.picture">
+                        <div class="align-self-center project-title">{{freelancer?.reviews?.projects?.[review.projectId]?.name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-center p-3 right-side-container">
+            <div class="fixed-position">
+                <p-button (onClick)="contactFreelancer()" icon="pi pi-send" label="Contact"
+                    *ngIf="freelancer?.email != currentUserEmail" styleClass="btn-secondary rounded"></p-button>
+            </div>
+        </div>
+    </div>
+</div>

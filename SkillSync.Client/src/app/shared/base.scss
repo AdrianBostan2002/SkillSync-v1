@@ -1,0 +1,30 @@
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+%basic-title{
+    font-family: "Signika", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 2.5em;
+}
+
+%basic-subtitle{
+    font-family: "Signika", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+%post-project-next-previous-buttons {
+    @include flex-row;
+    justify-content: end;
+    gap: 2em;
+}

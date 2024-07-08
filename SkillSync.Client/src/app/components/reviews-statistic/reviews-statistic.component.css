@@ -1,0 +1,25 @@
+.reviews-statistic {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    padding: 0.5em;
+}
+
+.stars {
+    flex: 0.2;
+}
+
+.progress-bar {
+    flex: 1;
+    background-color: var(--bs-white);
+}
+
+:host ::ng-deep .p-progressbar .p-progressbar-value {
+    border: 0 none;
+    margin: 0;
+    background: var(--bs-primary);
+}
+
+.number-of-reviws {
+    flex: 0.2;
+}

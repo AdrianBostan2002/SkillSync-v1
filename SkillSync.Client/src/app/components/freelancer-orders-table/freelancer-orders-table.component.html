@@ -1,0 +1,39 @@
+<div class="custom-table">
+    <table>
+        <thead>
+            <tr>
+                <th >{{currentUserRole === freelancerRole ? 'Buyer' : 'Freelancer'}}</th>
+                <th >Service</th>
+                <th >Due on</th>
+                <th *ngIf="status==completedStatus" >Completed at</th>
+                <th *ngIf="status == deliveredStatus" >Delivered at</th>
+                <th *ngIf="status == cancelledStatus" >Cancelled at</th>
+                <th >Total</th>
+                <th >Status</th>
+            </tr>
+        </thead>
+        <ng-container *ngIf="orders && orders.length > 0; then tableBody; else noElementsDiv" />
+        <ng-template #tableBody>
+            <tbody>
+                <tr *ngFor="let order of orders" (click)="onOrderSelected(order)" class="order pointer">
+                    <td><span class="content">{{order.name}}</span></td>
+                    <td><span class="content break-word">{{order.projectTitle}}</span></td>
+                    <td><span class="content">{{order.untilTo| date: 'dd/MM/yyyy HH:mm'}}</span></td>
+                    <td *ngIf="status == deliveredStatus || status == completedStatus || status == cancelledStatus">
+                        <span class="content">{{order.completedAt | date:
+                            'dd/MM/yyyy HH:mm'}}</span>
+                    </td>
+                    <td><span class="content">{{order.price| currencyConverter:currencyType }}</span></td>
+                    <td><span class="content">{{statusToString(order.status)}}</span></td>
+                </tr>
+            </tbody>
+        </ng-template>
+        <ng-template #noElementsDiv>
+            <tbody>
+                <tr>
+                    <td class="no-orders-found" colspan="6">No orders found</td>
+                </tr>
+            </tbody>
+        </ng-template>
+    </table>
+</div>

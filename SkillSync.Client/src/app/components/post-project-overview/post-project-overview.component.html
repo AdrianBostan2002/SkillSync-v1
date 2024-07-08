@@ -1,0 +1,50 @@
+<div class="project-overview-content">
+    <p-card [style]="{'height' : '100%', 'display' : 'flex', 'flex-direction' : 'row', 'justify-content' : 'center'}">
+        <div class="card-content">
+            <p-card>
+                <ng-template pTemplate="title">
+                    <h2 class="text-primary">Project Overview</h2>
+                </ng-template>
+                <div class="project-title-container">
+                    <h5>
+                        {{titleDescription}}
+                    </h5>
+                    <form [formGroup]="overviewForm">
+                        <textarea placeholder="Title" formControlName="projectTitle" rows="3" cols="40" pInputTextarea
+                            [minlength]="minTitleLenght" [maxlength]="maxTitleLenght" [autoResize]="true"></textarea>
+                        <div class="text-area-message">
+                            <div class="minlenght-message">
+                                {{minTitleLenght}} characters minimum - {{maxTitleLenght}} maximum
+                            </div>
+                            <div class="character-counter">
+                                {{characterCounter}}/{{maxTitleLenght}}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="skills-container">
+                    <h5 class="mb-4">
+                        Which skill best fits your project?
+                    </h5>
+                    <div class="project-category-subcategory-skill">
+                        <p-dropdown [options]="skillCategories" optionLabel="name" [showClear]="true"
+                            [(ngModel)]="selectedSkillCategory" placeholder="Select Skill Category"
+                            (onChange)="onSkillCategoryChange()"></p-dropdown>
+                        <p-dropdown [options]="selectedSkillCategory?.skillSubcategories"
+                            (onChange)="onSkillSubcategoryChange()" optionLabel="name" [showClear]="true"
+                            [(ngModel)]="selectedSkillSubcategory" placeholder="Select Skill Subcategory"></p-dropdown>
+                        <p-dropdown [options]="selectedSkillSubcategory?.skills" optionLabel="name"
+                            (onChange)="onSkillChange($event)" [showClear]="true" [(ngModel)]="selectedSkill"
+                            placeholder="Select Skill"></p-dropdown>
+                    </div>
+                </div>
+                <ng-template pTemplate="footer">
+                    <div class="next-previous-button">
+                        <p-button label="Next" (onClick)="navigateToNext()"
+                            icon="pi pi-angle-right" iconPos="right" [disabled]="overviewForm.invalid" styleClass="btn-secondary rounded"></p-button>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </p-card>
+</div>

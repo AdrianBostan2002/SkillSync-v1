@@ -1,0 +1,16 @@
+<div class="search-bar w-100">
+    <p-inputGroup styleClass="input-group" [style]="{'width': '100%'}">
+        <input type="text" [(ngModel)]="searchText" (input)="search($event)" pInputText
+            placeholder="Looking for a service? Tell us what you need!" />
+        <button type="button" pButton icon="pi pi-search" class="btn-secondary search-bar-button"></button>
+    </p-inputGroup>
+    <p-overlayPanel [dismissable]="true" *ngIf="filteredResults.length > 0" #overlayPanel>
+        <ng-template pTemplate="content">
+            <div class="results">
+                <li *ngFor="let result of filteredResults" (click)="selectSkill(result)">
+                    {{result.name}}
+                </li>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+</div>

@@ -1,0 +1,126 @@
+@import "../../shared/base.scss";
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.card-container {
+    flex: 0.75;
+    padding-left: 3em;
+}
+
+.sub-title {
+    @extend %basic-subtitle;
+}
+
+.tab-view {
+    padding-left: 1em;
+}
+
+.right-side-container {
+    position: relative;
+    flex: 0.25;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin: 2em 0;
+}
+
+.right-side-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 90%;
+    align-items: center;
+    padding: 1em;
+    box-shadow: 0 0 60px rgba(0, 0, 0, .2);
+    position: sticky;
+    top: 2em;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.order-status-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+    position: relative;
+}
+
+.order-status-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.save-new-status-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    flex: 0;
+    position: absolute;
+    right: 1em;
+
+    i {
+        cursor: pointer;
+    }
+
+    .pi-check {
+        color: green;
+    }
+
+    .pi-times {
+        color: red;
+    }
+}
+
+.link-hover:hover {
+    cursor: pointer;
+}
+
+:host ::ng-deep .p-dropdown {
+    width: 10em;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-panels p-tabpanel {
+    height: 100%;
+    display: block;
+}
+
+.red-color {
+    color: red;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: #ffffff;
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+}
+
+:host ::ng-deep .p-dialog {
+    overflow: auto;
+}
+
+.payment-dialog-gap {
+    gap: 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.as-c {
+    align-self: center;
+}
+
+:host ::ng-deep .p-dropdown-items {
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+}

@@ -1,0 +1,31 @@
+<div class="container-fluid bg-primary">
+    <div class="container">
+        <nav class="navbar navbar-dark navbar-expand-lg py-0">
+            <a routerLink="/home" class="navbar-brand">
+                <h1 class="text-white fw-bold d-block">Skill<span class="text-secondary">Sync</span> </h1>
+            </a>
+            <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
+                <div class="navbar-nav ms-auto mx-xl-auto p-0">
+                    <a [routerLink]="['/home']" class="nav-item nav-link">Home</a>
+                    <a [routerLink]="['/about']" class="nav-item nav-link">About</a>
+                    <a [routerLink]="['/contact']" class="nav-item nav-link">Contact</a>
+                </div>
+            </div>
+            <div class="d-none d-xl-flex flex-shirink-0">
+                <div class="d-flex align-items-center justify-content-center ms-4 ">
+                    <app-login-button class="me-2" />
+                    <app-register-button class="me-3" />
+                    <a *ngIf="!displaySearchBar" (click)="$event.preventDefault();displaySearchBar = true"><i
+                            class="bi bi-search text-white fa-2x"></i></a>
+                    <a (click)="$event.preventDefault()" *ngIf="displaySearchBar">
+                        <app-search-bar class="animated fadeInDown" />
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

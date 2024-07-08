@@ -1,0 +1,26 @@
+li{
+    list-style-type: none;
+}
+
+li:hover{
+    opacity: 70%;
+    cursor: pointer;
+}
+
+:host ::ng-deep .p-overlaypanel .p-overlaypanel-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.75em;
+    max-height: 19em;
+    max-width: 35em;
+    overflow: auto;
+}
+
+.results{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.75em;
+    max-height: 30em;
+}

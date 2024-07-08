@@ -1,0 +1,221 @@
+<div class="d-flex main-container">
+    <div class="h-100 people-list float-left" id="people-list">
+        <div class="p-4">
+            <p-inputGroup styleClass="input-group flex-nowrap">
+                <input class="box-shadow-1" type="text" [(ngModel)]="chatFilterInput" pInputText
+                    placeholder="Search for a conversation" />
+                <button type="button" pButton icon="pi pi-search" (click)="filterChats()"
+                    class="search-bar-button btn-primary box-shadow-1"></button>
+            </p-inputGroup>
+        </div>
+        <ul class="d-flex flex-column ps-0 list">
+            <li class="d-flex flex-row gap-2 p-2 clearfix" *ngFor="let chat of filteredChats" (click)="onChatChanged(chat)"
+                [ngClass]="{'gray-background': chat.id == currentChat?.id}">
+                <div class="d-flex flex-row gap-3 align-items-center user-avatar-name-status">
+                    <p-avatar image={{chat.otherParticipant.profilePicture}} styleClass="mr-2 float-left" size="large"
+                        shape="circle"></p-avatar>
+                    <div class="float-left">
+                        <h6 class="mb-0">{{chat.otherParticipant.name}}</h6>
+                        <div class="status" *ngIf="chat.otherParticipant.isActive">
+                            <i class="pi pi-circle-fill online"></i>online
+                        </div>
+                        <div class="status" *ngIf="!chat.otherParticipant.isActive">
+                            <i class="pi pi-circle-fill offline" *ngIf="!chat.otherParticipant.isActive"></i>offline
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center chat-notification-icon">
+                    <i class="pi pi-envelope" *ngIf="chat.hasUnseenMessages"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <ng-container *ngIf="currentChat; then selectedChat; else unselectedChat" />
+    <ng-template #unselectedChat>
+        <div class="h-100 float-left d-flex flex-column chat">
+            <div class="d-flex flex-column justify-content-center align-items-center h-100 gap-3 unselected-chat">
+                <i class="pi pi-comments"></i>
+                <span class="select-conversation-message">Select a conversation to start chatting.</span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #selectedChat>
+        <div class="h-100 float-left d-flex flex-column chat">
+            <div class="d-flex flex-row align-items-center gap-2 p-3 chat-header clearfix">
+                <p-avatar image={{currentChat?.otherParticipant?.profilePicture}} styleClass="mr-2 float-left" size="xlarge"
+                    shape="circle"></p-avatar>
+                <div class="float-left">
+                    <h4 class="mb-0">{{currentChat?.otherParticipant?.name ?? ''}}</h4>
+                </div>
+            </div>
+            <div class="chat-history" #chatHistory>
+                <ul class="list">
+                    <li class="clearfix" *ngFor="let message of currentChat?.messages; let i = index">
+                        <ng-container
+                            *ngIf="message.sender==currentUser; then currentUserMessage; else otherParticipantMessage" />
+                        <ng-template #currentUserMessage>
+                            <div class="mb-3 align-right" *ngIf="shouldDisplayDatetime(message, i)">
+                                <span class="ps-1 message-data-time">{{message.sentAt | date:'dd-MM HH:mm'}}</span> &nbsp;
+                                &nbsp;
+                                <span class="message-data-name">{{currentUserFirstName}}</span> <i
+                                    class="pi pi-circle-fill me"></i>
+                            </div>
+                            <div #messageId class="message other-message float-right" *ngIf="message.type==textMessage">
+                                {{message.content}}
+                            </div>
+                            <div #messageId *ngIf="message.type!=textMessage">
+                                <p-image [src]="message.content" alt="image" styleClass="p-image-float-right"
+                                    imageClass="message-image"
+                                    *ngIf="message.type == imageMessage && message.wasMediaReceivedFromStorage"
+                                    [preview]="true" />
+                                <div class="display-video float-right"
+                                    *ngIf="message.type == videoMessage && message.wasMediaReceivedFromStorage">
+                                    <video controls width="300" height="176">
+                                        <source [src]="message.content" type="video/mp4">VideoError
+                                    </video>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center p-3 cursor-pointer media-preview other-message float-right"
+                                    *ngIf="message.type == fileMessage && message.wasMediaReceivedFromStorage"
+                                    (click)="onDocumentSelected(message)">
+                                    <ng-container
+                                        *ngIf="message.type == fileMessage && message.wasMediaReceivedFromStorage && !checkIfDocumentIsWord(message.content.toString()); then pdfDocument; else wordDocument"></ng-container>
+                                    <ng-template #pdfDocument>
+                                        <div
+                                            class="bg-white d-flex flex-row align-items-center gap-3 p-2  message-type-icon">
+                                            <i class="pi pi-file-pdf"></i>
+                                            <span class="message-name">
+                                                Click for document preview
+                                            </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #wordDocument>
+                                        <div
+                                            class="bg-white d-flex flex-row align-items-center gap-3 p-2  message-type-icon">
+                                            <i class="pi pi-file-word"></i>
+                                            <span class="message-name">
+                                                Click to download document
+                                            </span>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                                <app-document-view-dialog [chatMessage]="message"
+                                    [isDialogVisible]="message.shouldDisplayDocument"
+                                    *ngIf="message.shouldDisplayDocument" (dialogClosed)="onDialogClosed(message)">
+                                </app-document-view-dialog>
+                                <div class="d-flex flex-column justify-content-center align-items-center p-3 cursor-pointer media-preview other-message float-right"
+                                    *ngIf="!message.wasMediaReceivedFromStorage" (click)="getMedia(message)">
+                                    <div
+                                        class="bg-white d-flex flex-row align-items-center gap-3 p-2  message-type-icon">
+                                        <ng-container
+                                            [ngTemplateOutlet]="getTemplateBasedOnMessageType(message)"></ng-container>
+                                        <ng-template #getFromCloudPicture>
+                                            <i class="pi pi-image"></i>
+                                        </ng-template>
+                                        <ng-template #getFromCloudVideo>
+                                            <i class="pi pi-video"></i>
+                                        </ng-template>
+                                        <ng-template #getFromCloudPdfDocument>
+                                            <i class="pi pi-file-pdf"></i>
+                                        </ng-template>
+                                        <ng-template #getFromCloudWordDocument>
+                                            <i class="pi pi-file-word"></i>
+                                        </ng-template>
+                                        <span class="message-name">{{message.content}}</span>
+                                        <i class="pi pi-cloud-download"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template #otherParticipantMessage>
+                            <div class="mb-3 align-left" *ngIf="shouldDisplayDatetime(message, i)">
+                                <i class="pi pi-circle-fill online"></i>
+                                <span
+                                    class="message-data-name">{{extractFirstName(currentChat?.otherParticipant?.name??'')}}</span>
+                                <span class="ps-1 message-data-time">{{message.sentAt | date:'dd-MM HH:mm'}}</span>
+                            </div>
+                            <div #messageId class="message my-message float-left" *ngIf="message.type==textMessage">
+                                {{message.content}}
+                            </div>
+                            <div #messageId *ngIf="message.type!=textMessage">
+                                <p-image [src]="message.content" alt="image" styleClass="p-image-float-left"
+                                    imageClass="message-image"
+                                    *ngIf="message.type == imageMessage && message.wasMediaReceivedFromStorage"
+                                    [preview]="true" />
+                                <div class="display-video float-left"
+                                    *ngIf="message.type == videoMessage && message.wasMediaReceivedFromStorage">
+                                    <video controls width="300" height="176">
+                                        <source [src]="message.content" type="video/mp4">VideoError
+                                    </video>
+                                </div>
+                                <app-document-view-dialog [chatMessage]="message"
+                                    [isDialogVisible]="message.shouldDisplayDocument"
+                                    *ngIf="message.shouldDisplayDocument==true">
+                                </app-document-view-dialog>
+                                <div class="d-flex flex-column justify-content-center align-items-center p-3 cursor-pointer media-preview my-message float-left"
+                                    *ngIf="message.type == fileMessage && message.wasMediaReceivedFromStorage"
+                                    (click)="onDocumentSelected(message)">
+                                    <ng-container
+                                        *ngIf="message.type == fileMessage && message.wasMediaReceivedFromStorage && !checkIfDocumentIsWord(message.content.toString()); then pdfDocument; else wordDocument"></ng-container>
+                                    <ng-template #pdfDocument>
+                                        <div
+                                            class="bg-white d-flex flex-row align-items-center gap-3 p-2  message-type-icon">
+                                            <i class="pi pi-file-pdf"></i>
+                                            <span class="message-name">
+                                                Click for document preview
+                                            </span>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #wordDocument>
+                                        <div
+                                            class="bg-white d-flex flex-row align-items-center gap-3 p-2  message-type-icon">
+                                            <i class="pi pi-file-word"></i>
+                                            <span class="message-name">
+                                                Click to download document
+                                            </span>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center p-3 cursor-pointer media-preview my-message float-left"
+                                    *ngIf="!message.wasMediaReceivedFromStorage" (click)="getMedia(message)">
+                                    <div
+                                        class="bg-white d-flex flex-row align-items-center gap-3 p-2  message-type-icon">
+                                        <ng-container
+                                            [ngTemplateOutlet]="getTemplateBasedOnMessageType(message)"></ng-container>
+                                        <ng-template #getFromCloudPicture>
+                                            <i class="pi pi-image"></i>
+                                        </ng-template>
+                                        <ng-template #getFromCloudVideo>
+                                            <i class="pi pi-video"></i>
+                                        </ng-template>
+                                        <ng-template #getFromCloudPdfDocument>
+                                            <i class="pi pi-file-pdf"></i>
+                                        </ng-template>
+                                        <ng-template #getFromCloudWordDocument>
+                                            <i class="pi pi-file-word"></i>
+                                        </ng-template>
+                                        <span class="message-name">{{message.content}}</span>
+                                        <i class="pi pi-cloud-download"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </li>
+                </ul>
+            </div>
+            <div class="p-3 chat-message clearfix">
+                <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"
+                    [(ngModel)]="inputMessage"></textarea>
+
+                <div class="upload-file-button" #uploadButton>
+                    <p-fileUpload mode="basic" chooseLabel="Add picture" [auto]="true" styleClass="upload-container"
+                        name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" [accept]=fileTypeRestrictions
+                        (onUpload)="onUpload($event)" [style.display]="'none'"></p-fileUpload>
+                </div>
+                <i class="pi pi-image" (click)="triggerUploadPicture()"></i> &nbsp;&nbsp;&nbsp;
+                <i class="pi pi-video" (click)="triggerUploadVideo()"></i> &nbsp;&nbsp;&nbsp;
+                <i class="pi pi-file" (click)="triggerUploadDocument()"></i>
+                <button class="float-right text-uppercase cursor-pointer fw-bold" (click)="sendMessage()">Send</button>
+            </div>
+        </div>
+    </ng-template>
+</div>

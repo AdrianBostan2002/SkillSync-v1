@@ -1,0 +1,118 @@
+<app-loading-spinner></app-loading-spinner>
+<div class="blurry-gradient-background">
+    <p-dialog [visible]="true" [style]="{width: '85vw', height: '90vh'}">
+        <ng-template pTemplate="headless">
+            <form [formGroup]="registerForm">
+                <div class="login-form">
+                    <div class="top-messages">
+                        <h2 class="text-primary">{{welcomeMessage}}</h2>
+                        <h4 class="text-primary">{{registerMessage}}</h4>
+                    </div>
+                    <div class="mid-container">
+                        <div class="left-side">
+                            <div class="upload-profile-picture-container">
+                                <div class="profile-picture-container">
+                                    <img [src]="profilePictureUrl" class="profile-picture" alt="Profile Picture">
+                                </div>
+                                <div class="upload-file-button">
+                                    <p-fileUpload mode="basic" chooseLabel={{uploadProfilePictureMessage}} [auto]="true"
+                                        styleClass="py-3 px-4 btn btn-primary rounded-pill" name="demo[]"
+                                        url="https://www.primefaces.org/cdn/api/upload.php"
+                                        accept={{jpegAndPngFileType}} (onUpload)="onUpload($event)"></p-fileUpload>
+                                </div>
+                            </div>
+                            <div class="cv-section">
+                                <h3 class="text-primary mb-3 text-center">Speed up your registration with our CV data
+                                    extractor!</h3>
+                                <div class="upload-profile-picture-container">
+                                    <div class="icon">
+                                        <i class="fas fa-check-circle animated fadeInLeft" *ngIf="uploadedCv"></i>
+                                    </div>
+                                    <div class="upload-file-button">
+                                        <p-fileUpload mode="basic" chooseLabel="Upload CV" [auto]="true"
+                                            styleClass="py-3 px-4 btn btn-primary rounded-pill" name="demo[]"
+                                            url="https://www.primefaces.org/cdn/api/upload.php" accept={{cvFileType}}
+                                            (onUpload)="onUploadCv($event)"></p-fileUpload>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-side">
+                            <div class="email-and-password-container">
+                                <span class="p-float-label">
+                                    <input pInputText id="email" formControlName="email" />
+                                    <label for="email">Email</label>
+                                </span>
+                                <span class="p-float-label">
+                                    <p-password styleClass="password-label" [style]="{width: '16.6rem'}"
+                                        formControlName="password" [toggleMask]="true">
+                                        <ng-template pTemplate="header">
+                                            <h6>Pick a password</h6>
+                                        </ng-template>
+                                        <ng-template pTemplate="footer">
+                                            <p-divider></p-divider>
+                                            <p class="mt-2">Suggestions</p>
+                                            <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                                                <li>At least one lowercase</li>
+                                                <li>At least one uppercase</li>
+                                                <li>At least one numeric</li>
+                                                <li>Minimum 8 characters</li>
+                                            </ul>
+                                        </ng-template>
+                                    </p-password>
+                                    <label for="email">Password</label>
+                                </span>
+                            </div>
+                            <div class="first-name-second-name-container">
+                                <span class="p-float-label">
+                                    <input pInputText id="firstName" formControlName="firstName" />
+                                    <label for="firstName">First Name</label>
+                                </span>
+                                <span class="p-float-label">
+                                    <input pInputText id="lastName" formControlName="lastName" />
+                                    <label for="lastName">Last Name</label>
+                                </span>
+                            </div>
+                            <div class="first-name-second-name-container">
+                                <span class="p-float-label">
+                                    <input pInputText id="email" (keypress)="validateInput($event)"
+                                        formControlName="phoneNumber" />
+                                    <label for="phone">Phone Number</label>
+                                </span>
+                                <span class="p-float-label">
+                                    <p-calendar formControlName="dateOfBirth" inputId="birth_date"
+                                        [readonlyInput]="true" />
+                                    <label for="birth_date">Birth Date</label>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="p-float-label address">
+                                    <input pInputText id="address" formControlName="address" class="w-100"/>
+                                    <label for="email">Address</label>
+                                </span>
+                            </div>
+                            <div class="country-container">
+                                <app-country-drop-down [nationality]="nationality"
+                                    (selectedCountryEvent)="receiveSelectedCountry($event)"></app-country-drop-down>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-message">
+                        Once you've completed the form, click the <span class="text-secondary">'Register'</span> button
+                        to become a member. If you already
+                        have an account, you can <a [routerLink]="'/login'"
+                            class="text-primary text-decoration-none pointer">click here
+                        </a>to be redirected to login form.
+                    </div>
+                    <div class="end-buttons">
+                        <app-back-button [route]="'/choose-register-provider'" />
+                        <button type="button"
+                            class="button-width px-4 btn btn-secondary rounded-pill carousel-content-btn1 animated fadeInLeft"
+                            (click)="onRegister()" [disabled]="registerForm.invalid">Register
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+    </p-dialog>
+</div>

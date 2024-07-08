@@ -1,0 +1,12 @@
+<div class="main-container">
+    <h1 class="text-primary">Manage orders</h1>
+    <p-tabView (activeIndexChange)="retrieveOrders($event)">
+        <p-tabPanel header="{{statusToString(orderWithStatus.status)}}"
+            *ngFor="let orderWithStatus of ordersWithTheirStatus">
+            <div class="package-content">
+                <app-freelancer-orders-table [orders]="orderWithStatus.orders"
+                    [status]="orderWithStatus.status"></app-freelancer-orders-table>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+</div>

@@ -1,0 +1,136 @@
+.left-side-container {
+    flex: 0.2;
+}
+
+.card-container {
+    flex: 1;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.right-side-container {
+    flex: 0.2;
+    position: relative;
+    z-index: 0;    
+}
+
+.freelancer-country-text {
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.freelancer-description-text {
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 1em;
+    text-align: left;
+}
+
+.sub-title {
+    font-family: "Signika", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.rating {
+    gap: 0.1em;
+}
+
+.rating-aproximation {
+    font-weight: 900;
+    margin-right: 0.1em;
+}
+
+.number-of-reviews {
+    font-weight: 700;
+}
+
+:host ::ng-deep .p-chip:hover {
+    cursor: pointer;
+}
+
+app-project-preview-card {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.projects-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1em;
+}
+
+.project-preview-button {    
+    border-radius: 12px;
+    height: 30em;
+    padding: 0;
+    flex: 0 0 calc(30% - 0px);
+    border: 0;
+    box-shadow: 0 0 58px rgba(0, 0, 0, .2);
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    border-color: #EFF6FF;
+    color: #32353b;
+    border-radius: 12px;
+    margin-right: 0.3rem;
+}
+
+:host ::ng-deep .p-rating-icon {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+.review-header {
+    gap: 0.75em;
+}
+
+.review-container {
+    flex: 0.9;
+    gap: 0.2em;
+}
+
+.review-body {
+    padding-left: 2.6em;
+    gap: 0.2em;
+}
+
+.project-details {
+    flex: 0.5;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+
+    .project-picture {
+        height: 5em;
+        width: 5em;
+        object-fit: contain;
+    }
+
+    .project-title {
+        overflow-wrap: anywhere;
+    }
+}
+
+.project-details:hover {
+    transform: translateX(15px);
+    cursor: pointer;
+}
+
+.flag-size {
+    width: 2em;
+    height: 21px;
+}
+
+:host ::ng-deep .p-rating .p-rating-item.p-rating-item-active .p-rating-icon {
+    color: var(--bs-secondary);
+}
+
+.fixed-position {
+    position: sticky;
+    height: 3em;
+    top: 1em;
+}

@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="container-fluid bg-secondary">
+        <div class="container">
+            <nav class="navbar navbar-dark navbar-expand-jc-sb">
+                <div class="start-side" *ngFor="let category of skillCategories">
+                    <p-overlayPanel #op [style]="{ width: 'auto'}">
+                        <ng-template pTemplate="content">
+                            <div class="subcategory" *ngFor="let subcategory of category.skillSubcategories">
+                                <p-button styleClass="skill-button"
+                                    [style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': '#1842b6' }"
+                                    (onClick)="onNavigateSubcategory(subcategory)" [text]="true"
+                                    label={{subcategory.name}} severity="secondary"></p-button>
+                                <div class="skill" *ngFor="let skill of subcategory.skills">
+                                    <p-button styleClass="skill-button"
+                                        [style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': '#26d48c' }"
+                                        (onClick)="onNavigateSkill(subcategory, skill)" [text]="true"
+                                        label={{skill.name}} severity="secondary"></p-button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-overlayPanel>
+                    <p-button (click)="op.toggle($event)" (dblclick)="onNavigateCategory(category)"
+                        label={{category.name}} [text]="true" styleClass="category-button" severity="secondary"
+                        [style]="{ padding: '0.1rem 0.2rem', 'box-shadow' : 'none', 'color': '#1842b6' }"></p-button>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

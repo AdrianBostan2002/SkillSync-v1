@@ -1,0 +1,65 @@
+<p-dialog [(visible)]="isDialogVisible" [style]="{'max-height' : '100%'}" (onHide)="onCancel()">
+    <form [formGroup]="uploadMediaForm">
+        <div class="main-container">
+            <div class="media" [ngStyle]="getStylesBasedOnFileType()">
+                <ng-container [ngTemplateOutlet]="getTemplateBasedFileType()"></ng-container>
+                <div *ngIf="isLoading" class="spinner">
+                    <p-progressSpinner styleClass="w-2rem h-2rem" strokeWidth="8" animationDuration=".5s" />
+                </div>
+                <ng-template #displaySlideShow>
+                    <div class="media-slideshow">
+                        <app-media-slideshow [media]="media"></app-media-slideshow>
+                    </div>
+                </ng-template>
+                <ng-template #displayDocument>
+                    <div class="document-icon">
+                        <ng-container
+                            *ngIf="media.length == 0; then notUploadedDocument; else uploadedDocument;"></ng-container>
+                        <ng-template #notUploadedDocument>
+                            <i class="pi pi-file"></i>
+                        </ng-template>
+                        <ng-template #uploadedDocument>
+                            <i class="pi pi-check-circle"></i>
+                        </ng-template>
+                    </div>
+                </ng-template>
+                <ng-template #displayAudio>
+                    <div class="audio-icon">
+                        <ng-container
+                            *ngIf="media.length == 0; then notUploadedAudio; else uploadedAudio;"></ng-container>
+                        <ng-template #notUploadedAudio>
+                            <i class="pi pi-volume-down"></i>
+                        </ng-template>
+                        <ng-template #uploadedAudio>
+                            <audio controls>
+                                <source [src]="media[0].url">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </ng-template>
+                    </div>
+                </ng-template>
+                <div class="media-options">
+                    <p-button (onClick)="triggerUpload()" icon="pi pi-upload" severity="secondary"
+                        [disabled]="isLoading" styleClass="btn-primary rounded mt-1"></p-button>
+                </div>
+            </div>
+            <div class="upload-file-button" #uploadButton>
+                <p-fileUpload #fileUpload mode="basic" chooseLabel="Add picture" [auto]="true"
+                    styleClass="upload-container" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                    accept={{fileTypeRestrictions}} (onBeforeUpload)="isLoading = true" (onUpload)="onUpload($event)"
+                    [style.display]="'none'"></p-fileUpload>
+                <span class="p-float-label">
+                    <textarea formControlName="description" rows="5" cols="42" pInputTextarea
+                        [autoResize]="true"></textarea>
+                    <label for="float-input">Description</label>
+                </span>
+            </div>
+            <div class="buttons">
+                <p-button (onClick)="onSave()" icon="pi pi-check" label="Save" styleClass="btn-primary rounded"
+                    [disabled]="uploadMediaForm.invalid"></p-button>
+                <p-button (onClick)="onCancel()" icon="pi pi-times" label="Cancel"
+                    styleClass="btn-primary rounded"></p-button>
+            </div>
+        </div>
+    </form>
+</p-dialog>

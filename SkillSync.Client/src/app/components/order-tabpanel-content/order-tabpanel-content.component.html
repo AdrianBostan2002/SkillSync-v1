@@ -1,0 +1,151 @@
+<div class="main-container">
+    <div class="left-side-container">
+        <ng-container
+            *ngIf="picturesMedia.length == 0 && videosMedia.length == 0 && documents.length == 0 && audios.length == 0 && text==undefined; then displayNoMediaUploaded; else displayMedia"></ng-container>
+        <ng-template #displayNoMediaUploaded>
+            <h3 class="text-primary">Nothing uploaded yet</h3>
+        </ng-template>
+        <ng-template #displayMedia>
+            <div class="display-media-container" *ngIf="picturesMedia.length != 0">
+                <h5 class="text-primary">Pictures</h5>
+                <div class="slide-show-description">
+                    <div class="slide-show">
+                        <app-media-slideshow (slideShowIndexEvent)="pictureIndexChanged($event)"
+                            [media]="picturesMedia"></app-media-slideshow>
+                        <div class="media-options">
+                            <ng-container
+                                *ngIf="editModeActive; then displayPictureOptions; else displayDownloadButton"></ng-container>
+                            <ng-template #displayPictureOptions>
+                                <p-speedDial [model]="pictureOptions ?? []" showIcon="pi pi-bars" direction="right"
+                                    buttonClassName="btn-primary rounded"></p-speedDial>
+                            </ng-template>
+                            <ng-template #displayDownloadButton>
+                                <p-button (onClick)="downloadPicture()" icon="pi pi-download"
+                                    styleClass="btn-primary rounded"></p-button>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="content-description" *ngIf="picturesMedia && picturesMedia.length>0">
+                        <textarea [style]="{'width': '33em'}" [value]="picturesMedia[pictureIndex ?? 0].description"
+                            pInputTextarea [autoResize]="true" readonly>
+                                </textarea>
+                    </div>
+                </div>
+                <p-divider></p-divider>
+            </div>
+            <div class="display-media-container" *ngIf="videosMedia.length != 0">
+                <h5 class="text-primary">Videos</h5>
+                <div class="slide-show-description">
+                    <div class="slide-show">
+                        <app-media-slideshow (slideShowIndexEvent)="videoIndexChanged($event)"
+                            [media]="videosMedia"></app-media-slideshow>
+                        <div class="media-options">
+                            <ng-container
+                                *ngIf="editModeActive; then displayVideoOptions; else displayDownloadButton"></ng-container>
+                            <ng-template #displayVideoOptions>
+                                <p-speedDial [model]="videoOptions ?? []" showIcon="pi pi-bars" direction="right"
+                                    buttonClassName="btn-primary rounded"></p-speedDial>
+                            </ng-template>
+                            <ng-template #displayDownloadButton>
+                                <p-button (onClick)="downloadVideo()" icon="pi pi-download"
+                                    styleClass="btn-primary rounded"></p-button>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="content-description" *ngIf="videosMedia && videosMedia.length>0">
+                        <textarea [style]="{'width': '33em'}" [value]="videosMedia[videoIndex ?? 0].description"
+                            pInputTextarea [autoResize]="true" readonly>
+                        </textarea>
+                    </div>
+                </div>
+                <p-divider></p-divider>
+            </div>
+            <div class="display-media-container" *ngIf="documents.length != 0">
+                <h5 class="text-primary">Documents</h5>
+                <div class="documents-description">
+                    <div class="documents">
+                        <div class="document-preview" *ngFor="let document of documents; let i = index"
+                            (click)="selectedDocument = document"
+                            [ngClass]="{'gray-background': document.content == selectedDocument?.content}">
+                            <i class="pi pi-file"></i>
+                            <div class="file-description" *ngIf="document">
+                                <textarea [style]="{'width': '33em'}" [value]="document.description" pInputTextarea
+                                    [autoResize]="true" readonly>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="media-options">
+                        <ng-container
+                            *ngIf="editModeActive; then displayDocumentOptions; else displayDownloadButton"></ng-container>
+                        <ng-template #displayDocumentOptions>
+                            <p-speedDial [model]="documentOptions ?? []" showIcon="pi pi-bars" direction="right"
+                                buttonClassName="btn-primary rounded"></p-speedDial>
+                        </ng-template>
+                        <ng-template #displayDownloadButton>
+                            <p-button (onClick)="downloadDocument()" icon="pi pi-download"
+                                styleClass="btn-primary rounded"></p-button>
+                        </ng-template>
+                    </div>
+                </div>
+                <p-divider></p-divider>
+            </div>
+            <div class="display-media-container" *ngIf="audios.length != 0">
+                <h5 class="text-primary">Audios</h5>
+                <div class="documents-description">
+                    <div class="documents">
+                        <div class="document-preview" *ngFor="let audio of audios; let i = index"
+                            (click)="selectedAudio = audio"
+                            [ngClass]="{'gray-background': audio.content == selectedAudio?.content}">
+                            <audio controls>
+                                <source [src]="audio.content">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <div class="file-description" *ngIf="audio">
+                                <textarea [style]="{'width': '33em'}" [value]="audio.description" pInputTextarea
+                                    [autoResize]="true" readonly>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notes-section">
+                        <ng-container
+                            *ngIf="editModeActive; then displayAudioOptions; else displayDownloadButton"></ng-container>
+                        <ng-template #displayAudioOptions>
+                            <p-speedDial [model]="audioOptions ?? []" showIcon="pi pi-bars" direction="right"
+                                buttonClassName="btn-primary rounded"></p-speedDial>
+                        </ng-template>
+                        <ng-template #displayDownloadButton>
+                            <p-button (onClick)="downloadAudio()" icon="pi pi-download"
+                                styleClass="btn-primary rounded"></p-button>
+                        </ng-template>
+                    </div>
+                </div>
+                <p-divider></p-divider>
+            </div>
+        </ng-template>
+        <h5 class="text-primary" *ngIf="text!=undefined">Notes</h5>
+        <div class="notes-section">
+            <div class="notes-content" id="textContent{{orderContentPurpose}}">
+            </div>
+            <div class="media-options" *ngIf="text!=undefined">
+                <p-speedDial *ngIf="editModeActive" [model]="notesOptions ?? []" showIcon="pi pi-bars" direction="right"
+                    buttonClassName="btn-primary rounded"></p-speedDial>
+            </div>
+        </div>
+    </div>
+    <div class="right-side-container">
+        <div class="main-media-options" *ngIf="editModeActive">
+            <p-speedDial [model]="setAddMediaOptions" showIcon="pi pi-plus" direction="down"
+                buttonClassName="btn-primary rounded"></p-speedDial>
+        </div>
+        <div class="save-button" *ngIf="editModeActive">
+            <p-button (onClick)="onSave()" icon="pi pi-check" label="Save" styleClass="btn-primary rounded"></p-button>
+        </div>
+    </div>
+</div>
+<app-add-edit-order-product-dialog [fileType]="fileType" [isDialogVisible]="addOrEditDialogVisible"
+    [orderContent]="modifyOrderContent" (closeDialog)="addOrEditDialogVisible = false"
+    (orderContentModified)="orderContentModifiedEvent($event)"></app-add-edit-order-product-dialog>
+<app-editor-dialog [isDialogVisible]="addOrEditTextVisible" [initialContent]="text"
+    (closeDialog)="addOrEditTextVisible = false" (contentChanged)="textContentChanged($event)"></app-editor-dialog>

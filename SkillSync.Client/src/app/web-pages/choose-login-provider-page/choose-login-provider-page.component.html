@@ -1,0 +1,41 @@
+<app-loading-spinner></app-loading-spinner>
+<div class="blurry-gradient-background">
+    <p-dialog [visible]="true" class="rounded" [style]="{width: '50vw', height: '150vw'}">
+        <ng-template pTemplate="headless">
+            <div class="social-provider-element">
+                <div class="divider-left-side">
+                    <app-choose-social-providers-mottos></app-choose-social-providers-mottos>
+                </div>
+                <div class="divider-right-side">
+                    <h2 class="dialog-type-message text-primary">
+                        {{dialogTypeMessageLogin}}
+                    </h2>
+                    <a (click)="navigateToRegister()" class="text-primary text-decoration-none pointer">
+                        {{redirectToAuthenticationTypeMessageLogin}}
+                    </a>
+                    <div class="social-providers">
+                        <p-button label="Continue with Email" icon="pi pi-user-plus" styleClass="email-button"
+                            [outlined]="true" (onClick)="ownSystemButtonPressed()" [rounded]="true"></p-button>
+                        <asl-google-signin-button type="standard" size="large" shape="pill"
+                            data-use_fedcm_for_prompt="true"></asl-google-signin-button>
+                        <div>OR</div>
+                        <div class="other-social-providers">
+                            <p-button label="LinkedIn" icon="pi pi-linkedin" styleClass="linkedin-button"
+                                [outlined]="true" (onClick)="linkedInButtonPressed()" [rounded]="true"></p-button>
+                        </div>
+                    </div>
+                    <div class="terms-and-conditions">
+                        By joining, you agree to the SkillSync <a routerLink="/home">Terms of Service</a> and to
+                        occasionally
+                        receive emails from us. Please read our <a>Privacy Policy</a> to learn how we use
+                        your
+                        personal data.
+                    </div>
+                    <div class="w-100">
+                        <app-back-button [route]="'/home'" />
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dialog>
+</div>

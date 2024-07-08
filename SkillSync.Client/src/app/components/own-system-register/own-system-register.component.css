@@ -1,0 +1,142 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2em;
+    background: var(--bs-light);
+    height: 100%;
+}
+
+.email-and-password-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.first-name-second-name-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.top-messages {
+    text-align: center;
+    gap: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-message {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+:host {
+    ::ng-deep .p-password .p-inputtext {
+        width: 15.7rem;
+    }
+
+    ::ng-deep .p-input-icon-right>.p-icon-wrapper {
+        top: 50%;
+        margin-top: -0.5rem;
+        margin-right: 1.5em;
+    }
+}
+
+:host {
+    ::ng-deep .p-float-label {
+        width: 17em;
+    }
+}
+
+.upload-file-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile-picture {
+    width: 5em;
+    height: 5em;
+    border-radius: 100%;
+    object-fit: fill;
+}
+
+.upload-profile-picture-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3em;
+}
+
+:host {
+    ::ng-deep .p-fileupload {
+        width: 100%;
+        display: inline-block;
+    }
+
+    ::ng-deep .unselect-button {
+        width: 4em;
+        height: 4em;
+        border-radius: 100%;
+        padding: 0;
+    }
+}
+
+.end-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+:host ::ng-deep .p-datepicker table td {
+    padding: 0.1rem !important;
+}
+
+.mid-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2em;
+}
+
+form{
+    height: 100%;
+}
+
+.left-side{
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 6em;
+}
+
+.right-side {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.5em;
+
+}
+
+.country-container {
+    align-self: center;
+}
+
+i{
+    font-size: 4em;
+    color: var(--bs-secondary);
+}
+
+.cv-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.address{
+    width: 33.25em;
+}

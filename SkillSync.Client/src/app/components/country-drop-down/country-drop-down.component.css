@@ -1,0 +1,26 @@
+:host {
+    ::ng-deep .country-dropdown {
+        width: 20em;
+        height: 4em;
+        align-items: center;
+    }
+
+    ::ng-deep .country-dropdown .p-dropdown-item {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.country-item{
+    display: flex;
+    gap: 0.5em;
+}
+
+.flag-size{
+    width: 2em;
+    height: 21px;
+}
+
+:host ::ng-deep .p-dropdown-items {
+    padding: 5px 0 !important;
+}

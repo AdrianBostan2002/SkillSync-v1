@@ -1,0 +1,268 @@
+<app-place-order-dialog [isDialogVisible]="displayCustomerObligations" [project]="project"
+    (closeDialogEvent)="displayCustomerObligations=false" [packageType]="currentSelectedPackageType">
+</app-place-order-dialog>
+<div class="main-container">
+    <div class="d-flex flex-row">
+        <div class="left-side-container">
+        </div>
+        <div class="d-flex flex-column card-container">
+            <h2 class="text-primary">
+                {{project?.title}}
+            </h2>
+            <div class="d-flex justify-content-center">
+                <div class="media-container d-flex flex-row flex-wrap align-items-center justify-content-between">
+                    <div class="d-flex flex-column justify-content-center">
+                        <p-button [rounded]="true" [text]="true" [raised]="true" [text]="true" icon="pi pi-angle-left"
+                            styleClass="text-primary rounded-circle"
+                            [style]="{'background-color': '#fff', 'width': '2em', 'height': '2em'}"
+                            (onClick)="onPreviousProjectPreviewImage()" *ngIf="allMedia && allMedia.length > 1">
+                        </p-button>
+                    </div>
+                    <div class="media-slideshow d-flex flex-row flex-wrap align-items-center"
+                        *ngIf="allMedia?.[pictureIndex]?.fileType == imageFileType"
+                        [ngStyle]="{'background-image': 'url(\'' + allMedia?.[pictureIndex]?.url + '\')', 'object-fit': 'cover', 'background-size': 'contain', 'background-repeat': 'no-repeat', 'background-position': 'center'}">
+                    </div>
+                    <div class="d-flex flex-column flex-wrap justify-content-center video-container"
+                        *ngIf="allMedia?.[pictureIndex]?.fileType == videoFileType">
+                        <video controls class="video">
+                            <source [src]="allMedia?.[pictureIndex]?.url" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <p-button [rounded]="true" [text]="true" [raised]="true" [text]="true" icon="pi pi-angle-right"
+                            styleClass="text-primary rounded-circle"
+                            [style]="{'background-color': '#fff', 'width': '2em', 'height': '2em'}"
+                            (onClick)="onNextProjectPreviewImage()" *ngIf="allMedia && allMedia.length > 1">
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+            <p-divider></p-divider>
+            <h4 class="text-primary mb-0">
+                About this project
+            </h4>
+            <div class="description" id="descriptionContainer">
+            </div>
+            <p-divider></p-divider>
+            <div class="about-the-seller-container d-flex flex-column gap-3">
+                <h4 class="text-primary">
+                    About the seller
+                </h4>
+                <div class="profile-picture-and-name d-flex flex-row justify-content-start align-items-center gap-3">
+                    <p-avatar image={{project?.freelancer?.profilePicture}} styleClass="mr-2" size="xlarge"
+                        shape="circle"></p-avatar>
+                    <div class="d-flex flex-column">
+                        <h6><a class="link-primary"
+                                (click)="onFreelancerProfileSelected()">{{project?.freelancer?.name}}</a></h6>
+                        <div class="d-flex flex-row freelancer-country">
+                            <img [class]="'flag flag-' + project?.freelancer?.countryCode?.toLowerCase()"
+                                class="flag-size" />
+                            <span class="align-self-center">{{freelancerCountryName}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="freelancer-description">
+                    {{project?.freelancer?.description}}
+                </div>
+            </div>
+            <p-divider></p-divider>
+            <div class="d-flex flex-column gap-4" *ngIf="project?.hasPackages">
+                <h4 class="text-primary">
+                    Compare packages
+                </h4>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th id="package-type" rowspan="3" scope="colgroup">Package</th>
+                                <th id="package-type" scope="colgroup">
+                                    <div class="comparison">
+                                        <div class="align-self-start align-left package-price-text fw-bold">{{price[0]}}$</div>
+                                        <div class="align-self-start align-left package-type-text">Basic</div>
+                                        <div class="package-name-text">{{packageName[0] | uppercase}}</div>
+                                        <div class="package-description-text">{{packageDescription[0]}}</div>
+                                    </div>
+                                </th>
+                                <th id="package-type" scope="col">
+                                    <div class="comparison">
+                                        <div class="align-self-start align-left package-price-text fw-bold">{{price[1]}}$</div>
+                                        <div class="align-self-start align-left package-type-text">Standard</div>
+                                        <div class="package-name-text">{{packageName[1] | uppercase}}</div>
+                                        <div class="package-description-text">{{packageDescription[1]}}</div>
+                                    </div>
+                                </th>
+                                <th id="package-type" scope="col">
+                                    <div class="comparison">
+                                        <div class="align-self-start align-left package-price-text fw-bold">{{price[2]}}$</div>
+                                        <div class="align-self-start align-left package-type-text">Premium</div>
+                                        <div class="package-name-text">{{packageName[2] | uppercase}}</div>
+                                        <div class="package-description-text">{{packageDescription[2]}}</div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="project?.features && (project?.features?.length ?? 0) > 0">
+                            <tr *ngFor="let feature of project?.features">
+                                <ng-container *ngIf="!isPackageComparisonSpecialOption(feature)">
+                                    <td>{{ feature.name }}</td>
+                                    <td>
+                                        <i class="pi pi-check"
+                                            [style]="{'font-weight': '900', 'color': 'black', 'font-size': '1.2em'}"
+                                            *ngIf="feature.basicSelectedValue=='true'"></i>
+                                        <i class="pi pi-check"
+                                            [style]="{'color': '#dadbdd', 'font-weight': '900', 'font-size': '1.2em'}"
+                                            *ngIf="feature.basicSelectedValue=='false'"></i>
+                                        <span
+                                            *ngIf="feature.basicSelectedValue !== 'true' && feature.basicSelectedValue !== 'false'">{{feature.basicSelectedValue}}</span>
+                                    </td>
+                                    <td>
+                                        <i class="pi pi-check"
+                                            [style]="{'font-weight': '900', 'color': 'black', 'font-size': '1.2em'}"
+                                            *ngIf="feature.standardSelectedValue=='true'"></i>
+                                        <i class="pi pi-check"
+                                            [style]="{'color': '#dadbdd', 'font-weight': '900', 'font-size': '1.2em'}"
+                                            *ngIf="feature.standardSelectedValue=='false'"></i>
+                                        <span
+                                            *ngIf="feature.basicSelectedValue !== 'true' && feature.basicSelectedValue !== 'false'">{{feature.standardSelectedValue}}</span>
+                                    </td>
+                                    <td>
+                                        <i class="pi pi-check"
+                                            [style]="{'font-weight': '900', 'color': 'black', 'font-size': '1.2em'}"
+                                            *ngIf="feature.premiumSelectedValue=='true'"></i>
+                                        <i class="pi pi-check"
+                                            [style]="{'color': '#dadbdd', 'font-weight': '900', 'font-size': '1.2em'}"
+                                            *ngIf="feature.premiumSelectedValue=='false'"></i>
+                                        <span
+                                            *ngIf="feature.basicSelectedValue !== 'true' && feature.basicSelectedValue !== 'false'">{{feature.premiumSelectedValue}}</span>
+                                    </td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p-divider></p-divider>
+            </div>
+            <div class="d-flex flex-column gap-3" *ngIf="project?.frequentlyAskedQuestions?.length ?? 0 > 0">
+                <h4 class="text-primary">
+                    Frequently asked questions
+                </h4>
+                <ng-container class="d-flex flex-column questions"
+                    *ngFor="let faq of project?.frequentlyAskedQuestions">
+                    <p-fieldset [style]="{width: '100%', 'padding': '0'}" [toggleable]="true" [collapsed]="true">
+                        <ng-template pTemplate="header">
+                            <div class="question-container">
+                                <div class="question">{{faq.question}}</div>
+                            </div>
+                        </ng-template>
+                        <p class="m-0">
+                            {{faq.answer}}
+                        </p>
+                    </p-fieldset>
+                </ng-container>
+            </div>
+            <h4 class="text-primary">
+                Reviews
+            </h4>
+            <app-reviews-statistic [reviewStatistics]="reviewStatistics ?? []"
+                [totalReviews]="project?.reviews?.length ?? 0"></app-reviews-statistic>
+            <h4 class="text-primary" *ngIf="project?.reviews?.length">
+                People Reviews
+            </h4>
+            <div class="d-flex flex-column review" *ngFor="let review of project?.reviews">
+                <app-review-section [review]="review"></app-review-section>
+                <p-divider></p-divider>
+            </div>
+        </div>
+        <div class="right-side-container d-flex align-items-start justify-content-center animated fadeInRight">
+            <div class="packages d-flex flex-column align-items-center rounded">
+                <p-tabView (activeIndexChange)="tabpanelChanged($event)">
+                    <p-tabPanel header="Basic">
+                        <div class="d-flex flex-column gap-3 p-2-5">
+                            <div class="action-pricing-container d-flex flex-row justify-content-between gap-3 fw-bold">
+                                <div class="action">
+                                    {{packageName[0]}}
+                                </div>
+                                <div class="pricing">
+                                    {{price[0] | currencyConverter: currencyType}}
+                                </div>
+                            </div>
+                            <div class="features d-flex flex-column">
+                                <div class="fw-500">
+                                    {{packageDescription[0]}}
+                                </div>
+                                <div class="d-flex flex-row gap-2"
+                                    *ngFor="let feature of basicPackageFeatureDescription">
+                                    <i class="pi pi-check"></i>
+                                    <span>{{feature}}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end" *ngIf="displayContinueButton">
+                                <p-button (onClick)="onContinueButton()" icon="pi pi-cart-plus"
+                                    styleClass="btn-secondary rounded" label="Continue">
+                                </p-button>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Standard" *ngIf="project?.hasPackages">
+                        <div class="d-flex flex-column gap-3 p-2-5">
+                            <div class="action-pricing-container d-flex flex-row justify-content-between gap-3 fw-bold">
+                                <div class="action">
+                                    {{packageName[1]}}
+                                </div>
+                                <div class="pricing">
+                                    {{price[1] | currencyConverter: currencyType}}
+                                </div>
+                            </div>
+                            <div class="features d-flex flex-column">
+                                <div class="fw-500">
+                                    {{packageDescription[1]}}
+                                </div>
+                                <div class="d-flex flex-row gap-2"
+                                    *ngFor="let feature of standardPackageFeatureDescription">
+                                    <i class="pi pi-check"></i>
+                                    <span>{{feature}}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end" *ngIf="displayContinueButton">
+                                <p-button (onClick)="onContinueButton()" icon="pi pi-cart-plus"
+                                    styleClass="btn-secondary rounded" label="Continue">
+                                </p-button>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Premium" *ngIf="project?.hasPackages">
+                        <div class="d-flex flex-column gap-3 p-2-5">
+                            <div class="action-pricing-container d-flex flex-row justify-content-between gap-3 fw-bold">
+                                <div class="action">
+                                    {{packageName[2]}}
+                                </div>
+                                <div class="pricing">
+                                    {{price[2] | currencyConverter: currencyType}}
+                                </div>
+                            </div>
+                            <div class="features d-flex flex-column">
+                                <div class="fw-500">
+                                    {{packageDescription[2]}}
+                                </div>
+                                <div class="d-flex flex-row gap-2"
+                                    *ngFor="let feature of premiumPackageFeatureDescription">
+                                    <i class="pi pi-check"></i>
+                                    <span>{{feature}}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end" *ngIf="displayContinueButton">
+                                <p-button (onClick)="onContinueButton()" icon="pi pi-cart-plus"
+                                    styleClass="btn-secondary rounded" label="Continue">
+                                </p-button>
+                                <app-place-order-dialog [isDialogVisible]="displayCustomerObligations"
+                                    [project]="project" (closeDialogEvent)="displayCustomerObligations=false"
+                                    [packageType]="premiumPackageType">
+                                </app-place-order-dialog>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </div>
+    </div>
+</div>

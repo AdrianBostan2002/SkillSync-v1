@@ -1,0 +1,52 @@
+<div class="project-preview-button-content">
+    <div class="project-preview-picture-container">
+        <img class="project-preview-picture" [src]="preview.pictures[preview.pictureIndex || 0]"
+            (click)="onSelectedProjectPreview(preview)">
+    </div>
+    <div class="project-preview-text-container">
+        <div class="freelancer-details-container-and-image-buttons" *ngIf="!isFreelancerPage">
+            <div class="freelancer-details">
+                <p-avatar image={{preview.freelancerProfilePicture}} styleClass="mr-2" size="normal"
+                    shape="circle"></p-avatar>
+                <span class="freelancer-text">Added by <a (click)="onFreelancerProfileSelected(preview)"
+                        class="freelancer-name">{{preview.freelancerName}}</a></span>
+            </div>
+            <div class="image-buttons" *ngIf="preview.showButtons && preview.pictures.length > 1">
+                <p-button [rounded]="true" [text]="true" [raised]="true" [text]="true" icon="pi pi-angle-left"
+                    [style]="{'background-color': '#fff', 'width': '2em', 'height': '2em'}" styleClass="text-primary rounded-circle"
+                    (onClick)="onPreviousProjectPreviewImage(preview)"></p-button>
+                <p-button [rounded]="true" [text]="true" [raised]="true" [text]="true" icon="pi pi-angle-right"
+                    [style]="{'background-color': '#fff', 'width': '2em', 'height': '2em'}" styleClass="text-primary rounded-circle"
+                    (onClick)="onNextProjectPreviewImage(preview)"></p-button>
+            </div>
+        </div>
+        <div class="project-preview-text-title" (click)="onSelectedProjectPreview(preview)">
+            {{preview.title}}
+        </div>
+        <div class="rating-price-and-add-to-favorite-icon-container">
+            <div class="rating-price-container">
+                <div class="rating" *ngIf="preview.reviewStatistics">
+                    <i class="pi pi-star-fill"></i>
+                    <span class="rating-aproximation">{{preview.reviewStatistics.averageRating}}</span>
+                    <span class="number-of-reviews">({{preview.reviewStatistics.totalReviews}})</span>
+                </div>
+                <div class="project-preview-price">
+                    From {{preview.price | currencyConverter:
+                    currencyType}}
+                </div>
+            </div>
+            <div class="add-favorite-icon" *ngIf="username!=preview.freelancerName">
+                <p-button *ngIf="!preview.isUserWhoMadeRequestFavorite" [rounded]="true" [text]="true" [raised]="true"
+                    [text]="true" icon="pi pi-heart" styleClass="text-primary rounded-circle"
+                    [style]="{'background-color': '#fff', 'width': '2em', 'height': '2em'}"
+                    (onClick)="changeProjectFavoriteStatus(preview)">
+                </p-button>
+                <p-button *ngIf="preview.isUserWhoMadeRequestFavorite" [rounded]="true" [text]="true" [raised]="true"
+                    [text]="true" icon="pi pi-heart-fill" styleClass="rounded-circle"
+                    [style]="{'background-color': '#fff', 'width': '2em', 'height': '2em', 'color': 'red'}"
+                    (onClick)="changeProjectFavoriteStatus(preview)">
+                </p-button>
+            </div>
+        </div>
+    </div>
+</div>

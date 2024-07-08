@@ -1,0 +1,85 @@
+@import "../../shared/base.scss";
+
+.card-content {
+    @include flex-column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10em;
+    padding-right: 10em;
+}
+
+.next-previous-button {
+    @extend %post-project-next-previous-buttons;
+}
+
+:deep ::ng-host .p-button {
+    width: 7.5em;
+}
+
+textarea {
+    resize: none;
+    border: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+caption {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--bs-teal);
+    color: var(--bs-white);
+}
+
+:host ::ng-deep .p-inputnumber-input {
+    flex: 1 1 auto;
+    width: 7rem;
+}
+
+.offer-packages-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 2em;
+}
+
+.offer-packages-text {
+    align-self: center;
+    font-weight: 700;
+}
+
+::deep .p-inputswitch .p-component .p-inputswitch-checked {
+    background: var(--bs-primary);
+}
+
+.dropdown-option {
+    height: 100%;
+    width: 100%;
+}
+
+.error-message {
+    color: var(--bs-danger);
+}
+
+ :host ::ng-deep .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: var(--bs-primary);
+}
+
+:host ::ng-deep .p-dropdown-items {
+    margin-bottom: 0 !important;
+    padding: 5px 0 !important;
+}

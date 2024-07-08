@@ -1,0 +1,52 @@
+<div class="custom-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Title</th>
+                <th>Created at</th>
+                <th>Price (basic, standard, premium)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <ng-container *ngIf="projects && projects.length > 0; then tableBody; else noElementsDiv" />
+        <ng-template #tableBody>
+            <tbody>
+                <tr *ngFor="let project of projects" (click)="onSelectedProject(project)" class="project pointer">
+                    <td><img [src]="project.picture ?? logoPath"></td>
+                    <td><span class="content break-word">{{project.title}}</span></td>
+                    <td><span class="content">{{project.createdAt| date: 'dd/MM/yyyy'}}</span></td>
+                    <td>
+                        <div class="center-content">
+                            (<span *ngIf="project.basicPrice">{{project.basicPrice | currencyConverter:
+                                currencyType}}</span>
+                            <span *ngIf="project.standardPrice">, {{project.standardPrice | currencyConverter:
+                                currencyType}}</span>
+                            <span *ngIf="project.premiumPrice">, {{project.premiumPrice | currencyConverter:
+                                currencyType}}</span>)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="center-content">
+                            <button (click)="onEditProject($event, project)"
+                                class="edit-delete-button me-3 rounded btn-success">
+                                <i class="fa fa-pencil-alt"></i>
+                            </button>
+                            <button (click)="onDeleteProject($event, project)"
+                                class="edit-delete-button rounded btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </ng-template>
+        <ng-template #noElementsDiv>
+            <tbody>
+                <tr>
+                    <td class="no-orders-found" colspan="4">No projects found</td>
+                </tr>
+            </tbody>
+        </ng-template>
+    </table>
+</div>

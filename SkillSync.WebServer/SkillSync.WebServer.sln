@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34302.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.WebServer", "SkillSync.WebServer\SkillSync.WebServer.csproj", "{30E2EA9C-3396-4388-8068-3C26BD394B4C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.Domain", "SkillSync.Domain\SkillSync.Domain.csproj", "{B4065A58-017A-4586-A69A-CF353F5C6371}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.DataAccess", "SkillSync.Data\SkillSync.DataAccess.csproj", "{AAF4D70B-B477-43D7-9D86-B5AF1D6478B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.Business", "SkillSync.Business\SkillSync.Business.csproj", "{1B18FB1B-256F-4F47-A78D-3102C6DA1AF0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.IdentityManager", "SkillSync.IdentityManager\SkillSync.IdentityManager.csproj", "{440D6973-AADD-48D7-8D2E-8CEA4A8D064C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.Email", "SkillSync.Email\SkillSync.Email.csproj", "{AB39D120-B6DA-46C3-B0CE-2C9A9B05438B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.AzureBlobStorage", "SkillSync.AzureBlobStorage\SkillSync.AzureBlobStorage.csproj", "{861E22CD-DFD6-48DE-8F9D-B8BCBE724BB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.Chat", "SkillSync.Chat\SkillSync.Chat.csproj", "{6DC91C76-7D9E-4D5A-9EA9-5BBB831DEA70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.Notification", "SkillSync.Notification\SkillSync.Notification.csproj", "{C1680F47-0B59-4DFA-962F-DA96401184C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillSync.CVDataExtractor", "SkillSync.CVDataExtractor\SkillSync.CVDataExtractor.csproj", "{5DE34B5B-B8C1-4275-B6CF-969726193417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillSync.AzureOpenAiChatBot", "SkillSync.AzureOpenAiChatBot\SkillSync.AzureOpenAiChatBot.csproj", "{760B3408-E11D-4B65-B1E1-B99B3E2AA03A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30E2EA9C-3396-4388-8068-3C26BD394B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E2EA9C-3396-4388-8068-3C26BD394B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E2EA9C-3396-4388-8068-3C26BD394B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E2EA9C-3396-4388-8068-3C26BD394B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4065A58-017A-4586-A69A-CF353F5C6371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4065A58-017A-4586-A69A-CF353F5C6371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4065A58-017A-4586-A69A-CF353F5C6371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4065A58-017A-4586-A69A-CF353F5C6371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF4D70B-B477-43D7-9D86-B5AF1D6478B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF4D70B-B477-43D7-9D86-B5AF1D6478B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF4D70B-B477-43D7-9D86-B5AF1D6478B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF4D70B-B477-43D7-9D86-B5AF1D6478B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B18FB1B-256F-4F47-A78D-3102C6DA1AF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B18FB1B-256F-4F47-A78D-3102C6DA1AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B18FB1B-256F-4F47-A78D-3102C6DA1AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B18FB1B-256F-4F47-A78D-3102C6DA1AF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440D6973-AADD-48D7-8D2E-8CEA4A8D064C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440D6973-AADD-48D7-8D2E-8CEA4A8D064C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440D6973-AADD-48D7-8D2E-8CEA4A8D064C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440D6973-AADD-48D7-8D2E-8CEA4A8D064C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB39D120-B6DA-46C3-B0CE-2C9A9B05438B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB39D120-B6DA-46C3-B0CE-2C9A9B05438B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB39D120-B6DA-46C3-B0CE-2C9A9B05438B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB39D120-B6DA-46C3-B0CE-2C9A9B05438B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{861E22CD-DFD6-48DE-8F9D-B8BCBE724BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{861E22CD-DFD6-48DE-8F9D-B8BCBE724BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{861E22CD-DFD6-48DE-8F9D-B8BCBE724BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{861E22CD-DFD6-48DE-8F9D-B8BCBE724BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DC91C76-7D9E-4D5A-9EA9-5BBB831DEA70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC91C76-7D9E-4D5A-9EA9-5BBB831DEA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC91C76-7D9E-4D5A-9EA9-5BBB831DEA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC91C76-7D9E-4D5A-9EA9-5BBB831DEA70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1680F47-0B59-4DFA-962F-DA96401184C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1680F47-0B59-4DFA-962F-DA96401184C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1680F47-0B59-4DFA-962F-DA96401184C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1680F47-0B59-4DFA-962F-DA96401184C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE34B5B-B8C1-4275-B6CF-969726193417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE34B5B-B8C1-4275-B6CF-969726193417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE34B5B-B8C1-4275-B6CF-969726193417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE34B5B-B8C1-4275-B6CF-969726193417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{760B3408-E11D-4B65-B1E1-B99B3E2AA03A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{760B3408-E11D-4B65-B1E1-B99B3E2AA03A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{760B3408-E11D-4B65-B1E1-B99B3E2AA03A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{760B3408-E11D-4B65-B1E1-B99B3E2AA03A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A37584C-4ED2-4BA2-93FC-F2C47559C663}
+	EndGlobalSection
+EndGlobal

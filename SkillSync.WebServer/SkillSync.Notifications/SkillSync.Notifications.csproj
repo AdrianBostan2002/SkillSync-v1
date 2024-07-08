@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+		<PackageReference Include="Microsoft.Azure.SignalR" Version="1.25.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SkillSync.Domain\SkillSync.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

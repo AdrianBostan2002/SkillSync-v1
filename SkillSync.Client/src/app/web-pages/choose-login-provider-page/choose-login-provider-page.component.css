@@ -1,0 +1,109 @@
+.social-provider-element {
+    display: flex;
+    height: 100%;
+}
+
+.divider-left-side {
+    flex: 1;
+}
+
+.divider-right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 1em;
+    background-color: var(--bs-light);
+    align-items: center;
+}
+
+app-choose-social-providers-mottos {
+    height: 100%;
+    display: inline-flex;
+}
+
+.social-providers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 6em;
+}
+
+:host {
+    ::ng-deep .linkedin-button {
+        width: 14.3rem;
+        border-radius: 20px;
+        border-color: gray;
+        box-sizing: border-box;
+        transition: background-color .218s, border-color .218s;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #dadce0;
+        border-color: rgb(218, 220, 224);
+        color: #3c4043;
+        cursor: pointer;
+        font-family: "Google Sans", arial, sans-serif;
+        height: 40px;
+        letter-spacing: 0.25px;
+        outline: none;
+        overflow: hidden;
+        padding: 0 12px;
+        position: relative;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    ::ng-deep .linkedin-button .p-button-label {
+        flex-grow: 1;
+        font-family: "Google Sans", arial, sans-serif;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+    }
+
+    ::ng-deep .linkedin-button .p-button-icon {
+        color: #0077B5;
+    }
+}
+
+:host {
+    ::ng-deep .email-button {
+        width: 14.3rem;
+        border-radius: 20px;
+        border-color: gray;
+        box-sizing: border-box;
+        transition: background-color .218s, border-color .218s;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #dadce0;
+        border-color: rgb(218, 220, 224);
+        color: #3c4043;
+        cursor: pointer;
+        font-family: "Google Sans", arial, sans-serif;
+        height: 40px;
+        letter-spacing: 0.25px;
+        outline: none;
+        overflow: hidden;
+        padding: 0 12px;
+        position: relative;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    ::ng-deep .email-button .p-button-label {
+        flex-grow: 1;
+        font-family: "Google Sans", arial, sans-serif;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 14px;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}

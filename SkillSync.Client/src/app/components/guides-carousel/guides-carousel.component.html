@@ -1,0 +1,27 @@
+<div class="container-fluid blog py-5">
+    <div class="container">
+        <div class="text-center mx-auto pb-5 wow fadeIn" data-wow-delay=".3s" style="max-width: 600px;">
+            <h5 class="text-primary">Our Guides</h5>
+            <h1>Latest Guides & News</h1>
+        </div>
+        <p-carousel [value]="guides" [numVisible]="3" [numScroll]="4" [circular]="true">
+            <ng-template let-guide pTemplate="item">
+                <div class="related-guides">
+                    <div class="bg-light guide">
+                        <div class="text-center services-content">
+                            <img class="guide-picture" [src]="guide.pictureUrl">
+                            <div class="guide-text-container">
+                                <h4 class="mb-3 text-truncate">
+                                    {{guide.title}}
+                                </h4>
+                                <p class="mb-4 text-truncate">
+                                    {{guide.description}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+</div>

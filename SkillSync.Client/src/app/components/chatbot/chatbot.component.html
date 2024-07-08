@@ -1,0 +1,31 @@
+<button (click)="showChatbotDialog()" class="chatbot-button" *ngIf="isButtonVisible"
+    [style.background-image]="'url(' + botPictureUrl + ')'"></button>
+
+<p-dialog header="Chat with Fibi" [(visible)]="isChatbotVisible" [position]="'bottomright'" [resizable]="true"
+    [maximizable]="true" [style]="{ width: '50rem', height: '50rem' }">
+    <div class="d-flex flex-column gap-1 h-100 justify-content-between main-container">
+        <div class="chat-history history" #chatHistory>
+            <div class="d-flex mb-4 message" *ngFor="let message of messages">
+                <ng-container *ngIf="message.isChatBotMessage; then chatBotMessage; else userMessage"></ng-container>
+                <ng-template #chatBotMessage>
+                    <div class="message-element w-100 d-flex justify-content-start align-items-center gap-1">
+                        <p-avatar image={{botPictureUrl}} size="normal" shape="circle"></p-avatar>
+                        <span class="text-white bg-secondary rounded px-2 py-2">{{message.content}}</span>
+                    </div>
+                </ng-template>
+                <ng-template #userMessage>
+                    <div class="message-element w-100 d-flex justify-content-end align-items-center gap-1">
+                        <span class="text-white bg-primary rounded px-2 py-2">{{message.content}}</span>
+                        <p-avatar image={{defaultPofilePictureUrl}} size="normal" shape="circle"></p-avatar>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="input-section d-flex flex-column gap-2">
+            <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="4"
+                [(ngModel)]="chatMessage" [disabled]="isQueryLoading"></textarea>
+            <button type="button" class="w-25 px-4 align-self-center btn btn-primary rounded animated fadeInRight"
+                (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+</p-dialog>

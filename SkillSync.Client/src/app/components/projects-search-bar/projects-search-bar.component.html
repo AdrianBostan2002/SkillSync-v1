@@ -1,0 +1,8 @@
+<div class="search-bar">
+    <p-inputGroup styleClass="input-group">
+        <input type="text" [(ngModel)]="searchText" pInputText
+            placeholder="Searching for a project? Describe what you're looking for!" />
+        <button type="button" pButton icon="pi pi-search" (click)="searchProjects()"
+            class="search-bar-button btn-primary"></button>
+    </p-inputGroup>
+</div>

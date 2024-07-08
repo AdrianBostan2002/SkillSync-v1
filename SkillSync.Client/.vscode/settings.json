@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/f59314a6-1a26-4e0f-9b6d-72c3bd167ddb/resourceGroups/SkillSync/providers/Microsoft.Web/sites/SkillSyncClient",
+    "appService.deploySubpath": "dist\\skill-sync.client\\browser"
+}

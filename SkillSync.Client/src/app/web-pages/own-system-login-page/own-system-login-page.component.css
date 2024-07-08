@@ -1,0 +1,74 @@
+.login-form {
+    display: flex;
+    height: 100%;
+}
+
+.divider-left-side {
+    flex: 1;
+}
+
+app-choose-social-providers-mottos {
+    height: 100%;
+    display: inline-flex;
+}
+
+.divider-right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3.2em;
+    padding: 1em;
+    background-color: var(--bs-light);
+    align-items: center;
+}
+
+.email-and-password-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+}
+
+:host {
+    ::ng-deep .p-password .p-inputtext {
+        width: 15.7rem;
+    }
+
+    ::ng-deep .p-input-icon-right>.p-icon-wrapper {
+        top: 50%;
+        margin-top: -0.5rem;
+        margin-right: 1.5em;
+    }
+}
+
+.back-button {
+    width: 100%;
+}
+
+.top-messages {
+    text-align: center;
+    gap: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-message {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.register-message {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+:host {
+    ::ng-deep .p-float-label {
+        width: 17em;
+    }
+}
+
+::ng-deep .dialog form {
+    box-sizing: border-box;
+    height: 100%;
+}

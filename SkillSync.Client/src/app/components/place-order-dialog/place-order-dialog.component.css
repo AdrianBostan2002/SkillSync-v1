@@ -1,0 +1,45 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    gap: 1em;
+    padding: 2em;
+}
+
+.close-dialog-button{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.freelancer-client-rules-panel {
+    height: 65%;
+}
+
+app-freelancer-client-rules {
+    width: 100%;
+    height: 70%;
+    display: flex;
+}
+
+:host ::ng-deep .p-scrollpanel {
+    padding: 1.5rem;
+    border: 0.1em solid #64748b !important;
+}
+
+.accept-terms-and-place-order-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.accept-terms-conditions-message{
+    text-align: center;
+}

@@ -1,0 +1,15 @@
+<div class="review">
+    <div class="review-header">
+        <p-avatar image={{review?.reviewerProfilePicture}} styleClass="mr-2" size="normal" shape="circle"></p-avatar>
+        <span class="reviewer-name">{{review?.reviewerName}}</span>
+    </div>
+    <div class="review-body">
+        <div class="stars-rating">
+            <p-rating [readonly]="true" [cancel]="false" [(ngModel)]="stars" [stars]="5"></p-rating>
+            <span class="review-date"> | {{review?.reviewAt | date:'dd.MM.YYYY HH:mm'}}</span>
+        </div>
+        <div class="content">
+            {{review?.content}}
+        </div>
+    </div>
+</div>

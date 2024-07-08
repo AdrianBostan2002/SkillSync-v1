@@ -1,0 +1,21 @@
+.main-container {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: var(--bs-teal);
+    border-color: var(--bs-teal);
+    color: var(--bs-white);
+}
+
+:host ::ng-deep .p-tabview-nav {
+    margin-bottom: 0 !important;
+    padding-left: 0 !important;
+}
+
+:host ::ng-deep .p-tabview-panels {
+    padding: 0 !important;
+}

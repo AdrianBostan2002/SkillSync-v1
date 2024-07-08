@@ -1,0 +1,10 @@
+<div class="reviews-statistic" *ngFor="let statistic of reviewStatistics">
+    <div class="stars">{{statistic.stars}} Stars</div>
+    <div class="progress-bar">
+        <p-progressBar [value]="(statistic.numberOfReviews*100)/totalReviews" [showValue]="false"
+            [style]="{'width': '100%'}"></p-progressBar>
+    </div>
+    <div class="number-of-reviws">
+        ({{statistic.numberOfReviews}})
+    </div>
+</div>

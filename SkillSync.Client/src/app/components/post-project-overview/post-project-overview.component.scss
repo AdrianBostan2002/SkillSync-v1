@@ -1,0 +1,60 @@
+@import "../../shared/base.scss";
+
+.project-overview-content {
+    height: 82%;
+}
+
+.project-title-container {
+    @include flex-row;
+    justify-content: center;
+    gap: 2em;
+}
+
+.card-content {
+    @include flex-column;
+    width: 70%;
+    align-self: center;
+}
+
+:host ::ng-deep .p-card .p-card-content {
+    @include flex-column;
+    padding: 1.25rem 0;
+    align-content: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+:host ::ng-deep .p-dropdown-label {
+    width: 15em;
+}
+
+.text-area-message {
+    @include flex-row;
+    justify-content: space-between;
+}
+
+%text-area-under-label {
+    font-size: 0.7em;
+}
+
+.minlenght-message {
+    @extend %text-area-under-label;
+}
+
+.character-counter {
+    @extend %text-area-under-label;
+}
+
+.project-category-subcategory-skill {
+    @include flex-row;
+    justify-content: space-between;
+}
+
+.next-previous-button {
+    @extend %post-project-next-previous-buttons;
+}
+
+:host ::ng-deep .p-dropdown-items {
+    margin-bottom: 0 !important;
+    padding: 5px 0 !important;
+}

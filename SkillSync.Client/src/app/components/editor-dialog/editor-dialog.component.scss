@@ -1,0 +1,15 @@
+@import "../../shared/base.scss";
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+    width: 100%;
+}

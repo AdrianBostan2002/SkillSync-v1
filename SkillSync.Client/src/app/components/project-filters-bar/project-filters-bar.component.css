@@ -1,0 +1,85 @@
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 1em;
+}
+
+:host ::ng-deep .filter-button {
+  box-shadow: none;
+}
+
+@keyframes rotateUp {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rotateDown {
+  0% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+:host ::ng-deep .rotate-up .pi {
+  animation: rotateUp 0.25s linear forwards;
+}
+
+:host ::ng-deep .rotate-down .pi {
+  animation: rotateDown 0.25s linear forwards;
+}
+
+.feature-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  flex-wrap: wrap;
+  max-height: 18em;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+
+.filter-section-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em
+}
+
+.seller-details-section{
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  max-height: 17em;
+  overflow-y: scroll;
+}
+
+.sellers-lives-in-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.load-more-countries-button :hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.delete-filters-button{
+  width: 3rem;
+}

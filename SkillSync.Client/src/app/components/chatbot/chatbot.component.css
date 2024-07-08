@@ -1,0 +1,28 @@
+.chatbot-button {
+    border-radius: 1em;
+    width: 5em;
+    height: 5em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    z-index: 999;
+}
+
+.chatbot-button:hover {
+    animation-name: swing;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    cursor: pointer;
+}
+
+.history {
+    overflow-y: auto;
+}
+
+:host ::ng-deep .p-avatar {
+    display: flex;
+    align-items: center;
+}

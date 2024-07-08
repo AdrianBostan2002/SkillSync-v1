@@ -1,0 +1,51 @@
+$green: var(--bs-secondary);
+$blue: #1842b6;
+$orange: #E38968;
+$gray: #92959E;
+
+.main-container {
+  height: 85vh;
+  background: #F2F5F8;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.online {
+  color: $green;
+}
+
+.offline {
+  color: var(--bs-danger);
+}
+
+.me {
+  color: $blue;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+}
+
+:host ::ng-deep .message-image {
+  width: 15em;
+  height: 20em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2em;
+  margin-bottom: 30px;
+}
+
+:host ::ng-deep .p-image-float-left {
+  float: left;
+}
+
+:host ::ng-deep .p-image-float-right {
+  float: right;
+}

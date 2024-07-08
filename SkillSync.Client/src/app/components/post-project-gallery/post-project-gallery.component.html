@@ -1,0 +1,116 @@
+<div class="project-gallery">
+    <p-card [style]="{'height' : '100%', 'display' : 'flex', 'flex-direction' : 'row', 'justify-content' : 'center'}">
+        <div class="card-content">
+            <p-card>
+                <ng-template pTemplate="title">
+                    <h2 class="text-primary">Gallery</h2>
+                </ng-template>
+                <div class="text-title">
+                    {{galeryTitle}}
+                </div>
+                <div class="images-container">
+                    <div class="text-title">Images (up to 3)</div>
+                    <div class="subtitle">{{imageSubtitle}}
+                    </div>
+                    <div class="upload-file-button" #uploadButton>
+                        <p-fileUpload mode="basic" chooseLabel="Add picture" [auto]="true" styleClass="upload-container"
+                            name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                            accept={{jpegAndPngFileType}} (onUpload)="onUpload($event)"
+                            [style.display]="'none'"></p-fileUpload>
+                    </div>
+                    <div class="images">
+                        <div class="image" *ngFor="let picture of uploadedPictures; let i = index"
+                            [ngStyle]="{'background-image': 'url(\'' + picture.url + '\')'}">
+                            <div class="upload-buttons">
+                                <div class="upload-button">
+                                    <p-button styleClass="upload-button-p btn-primary rounded" icon="pi pi-pencil"
+                                        severity="secondary" (click)="triggerUploadPicture(i)"></p-button>
+                                </div>
+                                <div class="remove-upload-button">
+                                    <p-button styleClass="remove-upload-button-p btn-primary rounded" icon="pi pi-times"
+                                        severity="secondary" (click)="onPictureRemove(i)"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="images-container">
+                    <div class="text-title">Video (one only)</div>
+                    <div class="subtitle">{{videoSubtitle_p1}} <br> {{videoSubtitle_p2}}</div>
+                    <div class="video-container">
+                        <div class="upload-video-button" #uploadVideoButton>
+                            <p-fileUpload mode="basic" chooseLabel="Add video" [auto]="true"
+                                styleClass="upload-container" name="demo[]"
+                                url="https://www.primefaces.org/cdn/api/upload.php" accept={{videoFileType}}
+                                (onUpload)="onUpload($event)" [maxFileSize]="52428800"
+                                [style.display]="'none'"></p-fileUpload>
+                        </div>
+                        <div class="videos">
+                            <div class="video" *ngIf="uploadedVideo.url==emptyUploadedVideoUrl"
+                                [style.background-image]="'url(' + uploadedVideo.url + ')'">
+                                <div class="upload-button">
+                                    <p-button styleClass="upload-button-p btn-primary rounded" icon="pi pi-pencil"
+                                        (click)="triggerUploadVideo()"></p-button>
+                                </div>
+                            </div>
+                            <div class="display-video" *ngIf="uploadedVideo.url!==emptyUploadedVideoUrl">
+                                <video controls width="300" height="176">
+                                    <source [src]="uploadedVideo.url" type="video/mp4">
+                                    {{videoErrorMessage}}
+                                </video>
+                                <div class="remove-upload-button">
+                                    <p-button styleClass="remove-upload-button-p btn-primary rounded" icon="pi pi-times"
+                                        (click)="onVideoRemove()"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="images-container">
+                        <div class="text-title">Documents (up to 2)</div>
+                        <div class="subtitle">{{documentSubtitle}}</div>
+                        <div class="video-container">
+                            <div class="upload-document-button" #uploadVideoButton>
+                                <p-fileUpload mode="basic" chooseLabel="Add documents" [auto]="true"
+                                    styleClass="upload-container" name="demo[]"
+                                    url="https://www.primefaces.org/cdn/api/upload.php" accept={{documentFileType}}
+                                    (onUpload)="onUpload($event)" [style.display]="'none'"></p-fileUpload>
+                            </div>
+                            <div class="documents">
+                                <div class="image" *ngFor="let document of uploadedDocuments; let i = index"
+                                    [ngStyle]="{'background-image': 'url(\'' + document.url + '\')'}"
+                                    [style.background-color]="'#fafafb'">
+                                    <div class="upload-buttons">
+                                        <div class="upload-button">
+                                            <p-button styleClass="upload-button-p btn-primary rounded"
+                                                icon="pi pi-pencil" severity="secondary"
+                                                (click)="triggerUploadDocument(i)"></p-button>
+                                        </div>
+                                        <div class="check-icon">
+                                            <i *ngIf="document.url != emptyUploadDocumentUrl" class="pi pi-check-circle"
+                                                style="align-self: center; font-size: xxx-large; color: green;"></i>
+                                        </div>
+                                        <div class="remove-upload-button">
+                                            <p-button styleClass="remove-upload-button-p btn-primary rounded"
+                                                icon="pi pi-times" severity="secondary"
+                                                (click)="onDocumentRemove(i)"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-secondary">{{requiredActionMessage}}</h5>
+                <ng-template pTemplate="footer">
+                    <div class="next-previous-button">
+                        <p-button [style]="{width: 'auto'}" label="Previous" styleClass="w-8rem btn-secondary rounded"
+                            (onClick)="navigateToPrev()" icon="pi pi-angle-left" iconPos="left"></p-button>
+                        <p-button [style]="{width: 'auto'}" label="Next" styleClass="w-8rem btn-secondary rounded"
+                            (onClick)="navigateToNext()" icon="pi pi-angle-right" iconPos="right"
+                            [disabled]="!atLeastOnePictureUploaded"></p-button>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </p-card>
+</div>
